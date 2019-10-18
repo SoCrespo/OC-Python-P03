@@ -21,7 +21,7 @@ It is a 15 x 15 structure, in which each cell is represented by a specific chara
 
 *About the exit, please note :*
 - the maze must be entirely closed with walls, except for one, and only one, exit.
-- DO NOT locate the exit in a corner, since MacGyver cannot move in diagonal.
+- DO NOT locate the exit in a corner, since MacGyver cannot move diagonally.
 
 Here is an example of how to represent a small structure of 3 x 3 cells, the exit is in the east wall(depending on the font, the maze may seem to be not square-shaped):  
 WWW  
