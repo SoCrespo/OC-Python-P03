@@ -26,7 +26,13 @@ class Maze:
                 return True
 
         if exactly_one_exit(self):               
-            return [i for i,j in self.background.items() if j == ":"][0]
+            coord = [i for i,j in self.background.items() if j == ":"][0] 
+            if coord in [(0,0), (0,14), (14,0), (14,14)]:
+                raise ValueError("Sortie située dans un angle")
+            return coord
 
     if __name__ == "__main__":
         pass
+
+maze = Maze("pattern.txt")
+print(maze.exit)
