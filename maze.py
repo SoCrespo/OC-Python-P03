@@ -2,9 +2,8 @@ class Maze:
     def __init__(self, pattern_path):
         self.pattern_path = pattern_path
         self.background = self._background()
-        self.exit = self._exit()
         self.corridor = {i:j for i, j in self.background.items() if j == "_"}
-    
+        self.mac_pos, self.exit_pos = self._get_pos()
 
     def _background(self):
         background = dict()
@@ -14,23 +13,24 @@ class Maze:
                     background.update({(i,j): letter})
         return background
         
-    def _exit(self): 
-        elements = self.background.values()    
-        if ":" not in elements:
-            raise ValueError("Le labyrinthe n'a pas de sortie")
-        if list(elements).count(":") > 1:
-            raise ValueError("Le labyrinthe a plus d'une sortie")     
-        coord = [i for i,j in self.background.items() if j == ":"][0] 
-        if coord in [(0,0), (0,14), (14,0), (14,14)]: # replace 14 by n ?
-            raise ValueError("Sortie située dans un angle")
-        return coord
-
-    
+    def _get_pos(self): 
+        elements = self.background.items()
+        mac_pos = []
+        exit_pos = []
+        for coord, item in elements:
+            if item == "*":
+                mac_pos.append(coord)
+            elif item == ":":
+                exit_pos.append(coord)    
+        if len(mac_pos) == len(exit_pos) == 1 :
+            return mac_pos[0], exit_pos[0]
+        raise ValueError("Erreur sur position de MacGyver ou de la sortie")
+            
+           
             
 if __name__ == "__main__":
-     pass 
- 
-maze = Maze("pattern.txt")
-print(maze.exit)
-
+    maze = Maze("pattern.txt")
+    print(maze.background)
+    print(maze.mac_pos, maze.exit_pos)
+    
     
