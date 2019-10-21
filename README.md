@@ -13,9 +13,9 @@ Once you have the syringe, all you have to do is rush to the exit.
 Todo
 
 **CONFIG**  
-The maze pattern is in the pattern.txt file an can be modified.  
+The maze pattern is in the pattern.txt file and can be modified.  
 It is a 15 x 15 structure, in which each cell is represented by a specific character:  
-" W " (uppercase)for a piece of wall  
+" W " (uppercase) for a piece of wall  
 " _ " (key 8 of the keyboard) for a piece of corridor  
 " : " for the exit.
 
