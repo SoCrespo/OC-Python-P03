@@ -12,6 +12,6 @@ Once you have the syringe, all you have to do is rush to the exit.
 **SETUP**  
 Todo
 
-**CONFIG**  
+**CONFIGURATION**
 
 please refer to config.py file
