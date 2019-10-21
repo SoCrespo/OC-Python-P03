@@ -4,8 +4,9 @@ class Item:
         # self.image = image
         pass
              
-    if __name__ == "__main__":
-        print(self.name)
+if __name__ == "__main__":
+    item = Item("Un item")
+    print(item.name)
             
     
 

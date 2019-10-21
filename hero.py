@@ -4,5 +4,6 @@ class Hero():
         self.bag = []
         #self.image = image
         
-    if __name__ == "__main__":
-        print(self.name)
+if __name__ == "__main__":
+    player = Hero("MacGyver")
+    print(player.name)
