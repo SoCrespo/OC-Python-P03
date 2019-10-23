@@ -1,34 +1,55 @@
-import random
+# import du labyrinthe et des couloirs depuis pattern.txt
+background = {}
+with open("pattern.txt", "r", encoding = "utf8") as p:
+            for i, line in enumerate(p):
+                for j, char in enumerate(line.strip()):
+                    background.update({(i,j): char})
+                        
+                    
+# extraction du couloir, des positions de MG de de la sortie
+mac_pos = []
+exit_pos = []
+corridor = {}
+for coord, char in background.items():
+    if char == "*":
+        mac_pos.append(coord)
+    elif char in (":", "_"):
+        corridor.update({coord: char}) 
+        if char == ":":
+            exit_pos.append(coord)     
+if not (len(mac_pos) == len(exit_pos) == 1) :
+    raise ValueError("Erreur sur position de MacGyver ou de la sortie")
+else:
+    mac_pos = mac_pos[0]
+    exit_pos = exit_pos[0]
+                    
+# Gestion des déplacements de MacGyver
+def up(coord):
+    x, y = coord
+    return (x - 1, y)
 
-import maze
-import item
-import hero
+def down(coord):
+    x, y = coord
+    return (x + 1, y)    
 
-class Game:
-    
-    def __init__(self):
-        pass
-    
-    the_maze = maze.Maze("pattern.txt")
+def left(coord):
+    x, y = coord
+    return (x, y - 1)
 
-    mac_gyver = hero.Hero("MacGyver")
-    guard = item.Item("Guard")
-    needle = item.Item("Needle")
-    tube = item.Item("Tube")
-    ether = item.Item("Ether")
+def right(coord):
+    x, y = coord
+    return (x, y + 1)
 
-    tools_positions = random.choices(list(the_maze.corridor.keys()), k=3)
-
-    items_positions = {
-        mac_gyver : the_maze.mac_pos, 
-        guard : the_maze.exit_pos, 
-        needle : tools_positions[0],
-        tube : tools_positions[1],
-        ether : tools_positions[2], 
-        }
-
-    # def update_item_pos(background, items_positions):      
-    #     for item, pos in items_positions.items():
-    #         background[.update(i)]
-
-
+move_dict = {"u" : up, "d" : down, "l": left, "r": right}
+while True:
+    move = input("tapez U(p), D(own), L(eft), R(ight), ou Q pour terminer :").lower()
+    if move == "q": 
+        break
+    if move not in move_dict.keys():
+        continue
+    new_coord = move_dict.get(move)(mac_pos)
+    if new_coord in corridor:
+        mac_pos = new_coord
+    print(mac_pos)
+    if mac_pos == exit_pos: 
+        print("Gagné !")        
