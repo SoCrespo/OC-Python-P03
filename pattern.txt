@@ -7,10 +7,10 @@ WW_WWWWW_W_W_WW
 WW___W___W_W_WW
 WWWW_WWWWWWW_WW
 W_______W_____W
-W_WWWWW_W_WWW_W
+W_WWW_W_W_WWW_W
+W_W_W_W___W_W_W
 W_W_W_WWWWW_W_W
-W_W_W_WWWWW_W_W
-W___W_W_______W
+W___W_W___W___W
 WW____WWW___WWW 
 WWWWWWWWWW:WWWW
 
