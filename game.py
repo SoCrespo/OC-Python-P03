@@ -69,17 +69,18 @@ def right(coord):
 
 
 # Gestion des mouvements
-while True:
-    pygame.time.delay(1000)
+new_coord = mac_pos
+while mac_pos != exit_pos:
+    pygame.time.delay(100)
     for event in pygame.event.get(): 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_DOWN:
                 new_coord = down(mac_pos) 
-            if event.key == pygame.K_UP:
+            elif event.key == pygame.K_UP:
                 new_coord = up(mac_pos) 
-            if event.key == pygame.K_LEFT:
+            elif event.key == pygame.K_LEFT:
                 new_coord = left(mac_pos) 
-            if event.key == pygame.K_RIGHT:
+            elif event.key == pygame.K_RIGHT:
                 new_coord = right(mac_pos) 
             
     if new_coord in corridor:
@@ -93,7 +94,7 @@ while True:
             screen.blit(img,(j*40,i*40))
         pygame.display.update()    
            
-    if mac_pos == exit_pos: 
-        print("Gagné !")
-        break   
+    
+print("Gagné !")
+           
 pygame.quit()         
