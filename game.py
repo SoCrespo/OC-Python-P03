@@ -3,10 +3,8 @@ import hero
 from params import *
 from maze import *
 
+pygame.init()
 mac = hero.Hero()
-                   
-                    
-
         
 # extraction du couloir, des positions de MG de de la sortie
 mac_pos = []
@@ -26,11 +24,6 @@ else:
     exit_pos = exit_pos[0]
 
 # Affichage du labyrinthe
-pygame.init()
-    
-
-
-
 
 update_layout()
                  
