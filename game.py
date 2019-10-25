@@ -29,8 +29,7 @@ else:
 pygame.init()
     
 
-pygame.display.set_caption(caption)
-pygame.display.set_icon(mac_img)
+
 
 
 update_layout()

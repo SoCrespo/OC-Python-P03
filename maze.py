@@ -13,6 +13,11 @@ with open("pattern.txt", "r", encoding = "utf8") as p:
                     if i == 1 : 
                         width += 1   
                         
+screen = pygame.display.set_mode(screen_size)
+pygame.display.set_caption(caption)
+pygame.display.set_icon(mac_img)
+
+                        
 def update_layout():
     for i in range(width):
         for j in range(height):
