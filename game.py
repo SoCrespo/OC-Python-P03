@@ -13,6 +13,13 @@ with open("pattern.txt", "r", encoding = "utf8") as p:
                     if i == 1 : 
                         width += 1                      
                     
+def update_layout():
+    for i in range(width):
+        for j in range(height):
+            img = img_switch.get(background_dict.get((i,j)))
+            screen.blit(img,(j*40,i*40))
+        pygame.display.update()
+        
 # extraction du couloir, des positions de MG de de la sortie
 mac_pos = []
 exit_pos = []
@@ -48,12 +55,6 @@ img_switch = {
     "*": mac_img,
     ":": guard_img,
     }
-def update_layout():
-    for i in range(width):
-        for j in range(height):
-            img = img_switch.get(background_dict.get((i,j)))
-            screen.blit(img,(j*40,i*40))
-        pygame.display.update()
 
 update_layout()
                  
