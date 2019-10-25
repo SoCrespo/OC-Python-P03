@@ -1,5 +1,7 @@
 import pygame
 import hero
+from params import *
+
 mac = hero.Hero()
 
 # import du labyrinthe et des couloirs depuis pattern.txt
@@ -20,7 +22,7 @@ def update_layout():
     for i in range(width):
         for j in range(height):
             img = img_switch.get(background_dict.get((i,j)))
-            screen.blit(img,(j*40,i*40))
+            screen.blit(img,(j*img_height,i*img_width))
         pygame.display.update()
         
 # extraction du couloir, des positions de MG de de la sortie
@@ -42,12 +44,7 @@ else:
 
 # Affichage du labyrinthe
 pygame.init()
-screen_size = 800, 800
 
-floor_img = pygame.image.load("./resources/floor.png")
-wall_img = pygame.image.load("./resources/wall.png")
-mac_img = pygame.image.load("./resources/macgyver.png")
-guard_img = pygame.image.load("./resources/guard.png")
     
 screen = pygame.display.set_mode(screen_size)
 pygame.display.set_caption("Labyrinthe Mac Gyver")
@@ -61,25 +58,6 @@ img_switch = {
 
 update_layout()
                  
-# # Définition des déplacements de MacGyver
-
-# def up(coord):
-#     x, y = coord
-#     return (x - 1, y)
-
-# def down(coord):
-#     x, y = coord
-#     return (x + 1, y)    
-
-# def left(coord):
-#     x, y = coord
-#     return (x, y - 1)
-
-# def right(coord):
-#     x, y = coord
-#     return (x, y + 1)
-
-
 # Gestion des mouvements
 new_coord = mac_pos
 while mac_pos != exit_pos:
