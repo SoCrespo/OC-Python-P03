@@ -1,6 +1,9 @@
 import pygame
+import hero
+mac = hero.Hero()
 
 # import du labyrinthe et des couloirs depuis pattern.txt
+
 background_dict = {}
 width = 0
 height = 0
@@ -58,23 +61,23 @@ img_switch = {
 
 update_layout()
                  
-# Définition des déplacements de MacGyver
+# # Définition des déplacements de MacGyver
 
-def up(coord):
-    x, y = coord
-    return (x - 1, y)
+# def up(coord):
+#     x, y = coord
+#     return (x - 1, y)
 
-def down(coord):
-    x, y = coord
-    return (x + 1, y)    
+# def down(coord):
+#     x, y = coord
+#     return (x + 1, y)    
 
-def left(coord):
-    x, y = coord
-    return (x, y - 1)
+# def left(coord):
+#     x, y = coord
+#     return (x, y - 1)
 
-def right(coord):
-    x, y = coord
-    return (x, y + 1)
+# def right(coord):
+#     x, y = coord
+#     return (x, y + 1)
 
 
 # Gestion des mouvements
@@ -84,13 +87,13 @@ while mac_pos != exit_pos:
     for event in pygame.event.get(): 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_DOWN:
-                new_coord = down(mac_pos) 
+                new_coord = mac.down(mac_pos) 
             elif event.key == pygame.K_UP:
-                new_coord = up(mac_pos) 
+                new_coord = mac.up(mac_pos) 
             elif event.key == pygame.K_LEFT:
-                new_coord = left(mac_pos) 
+                new_coord = mac.left(mac_pos) 
             elif event.key == pygame.K_RIGHT:
-                new_coord = right(mac_pos) 
+                new_coord = mac.right(mac_pos) 
             
     if new_coord in corridor:
         background_dict[mac_pos]= "_"
