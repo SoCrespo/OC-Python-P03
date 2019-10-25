@@ -9,3 +9,9 @@ wall_img = pygame.image.load("./resources/wall.png")
 mac_img = pygame.image.load("./resources/macgyver.png")
 guard_img = pygame.image.load("./resources/guard.png")
 
+img_switch = {
+    "_": floor_img,
+    "W": wall_img,
+    "*": mac_img,
+    ":": guard_img,
+    }

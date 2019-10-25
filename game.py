@@ -44,17 +44,11 @@ else:
 
 # Affichage du labyrinthe
 pygame.init()
-
     
 screen = pygame.display.set_mode(screen_size)
 pygame.display.set_caption("Labyrinthe Mac Gyver")
 pygame.display.set_icon(mac_img)
-img_switch = {
-    "_": floor_img,
-    "W": wall_img,
-    "*": mac_img,
-    ":": guard_img,
-    }
+
 
 update_layout()
                  
