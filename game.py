@@ -6,12 +6,7 @@ from maze import *
 mac = hero.Hero()
                    
                     
-def update_layout():
-    for i in range(width):
-        for j in range(height):
-            img = img_switch.get(background_dict.get((i,j)))
-            screen.blit(img,(j*img_height,i*img_width))
-        pygame.display.update()
+
         
 # extraction du couloir, des positions de MG de de la sortie
 mac_pos = []
@@ -33,7 +28,7 @@ else:
 # Affichage du labyrinthe
 pygame.init()
     
-screen = pygame.display.set_mode(screen_size)
+
 pygame.display.set_caption(caption)
 pygame.display.set_icon(mac_img)
 
