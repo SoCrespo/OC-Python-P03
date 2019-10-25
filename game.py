@@ -25,11 +25,13 @@ else:
 
 # Affichage du labyrinthe
 
-update_layout()
+
                  
 # Gestion des mouvements
 new_coord = mac_pos
 while mac_pos != exit_pos:
+    update_layout()
+    
     pygame.time.delay(100)
     for event in pygame.event.get(): 
         if event.type == pygame.KEYDOWN:
@@ -47,7 +49,7 @@ while mac_pos != exit_pos:
         background_dict[new_coord] = "*"    
         mac_pos = new_coord
     
-    update_layout()
+    
     
            
     
