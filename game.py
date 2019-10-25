@@ -96,11 +96,8 @@ while mac_pos != exit_pos:
         background_dict[new_coord] = "*"    
         mac_pos = new_coord
     
-    for i in range(width):
-        for j in range(height):
-            img = img_switch.get(background_dict.get((i,j)))
-            screen.blit(img,(j*40,i*40))
-        pygame.display.update()    
+    update_layout()
+    
            
     
 print("Gagné !")
