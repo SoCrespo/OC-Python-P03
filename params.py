@@ -16,4 +16,3 @@ img_switch = {
     ":": guard_img,
     }
 caption = "Labyrinthe Mac Gyver"
-# screen = pygame.display.set_mode(screen_size)
