@@ -46,7 +46,7 @@ else:
 pygame.init()
     
 screen = pygame.display.set_mode(screen_size)
-pygame.display.set_caption("Labyrinthe Mac Gyver")
+pygame.display.set_caption(caption)
 pygame.display.set_icon(mac_img)
 
 

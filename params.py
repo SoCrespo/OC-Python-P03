@@ -15,3 +15,4 @@ img_switch = {
     "*": mac_img,
     ":": guard_img,
     }
+caption = "Labyrinthe Mac Gyver"
