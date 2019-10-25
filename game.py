@@ -23,9 +23,6 @@ else:
     mac_pos = mac_pos[0]
     exit_pos = exit_pos[0]
 
-# Affichage du labyrinthe
-
-
                  
 # Gestion des mouvements
 new_coord = mac_pos
@@ -48,10 +45,6 @@ while mac_pos != exit_pos:
         background_dict[mac_pos]= "_"
         background_dict[new_coord] = "*"    
         mac_pos = new_coord
-    
-    
-    
-           
     
 print("Gagné !")
            
