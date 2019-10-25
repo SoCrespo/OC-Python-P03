@@ -48,12 +48,14 @@ img_switch = {
     "*": mac_img,
     ":": guard_img,
     }
-for i in range(width):
-    for j in range(height):
-        img = img_switch.get(background_dict.get((i,j)))
-        screen.blit(img,(j*40,i*40))
-    pygame.display.update()
+def update_layout():
+    for i in range(width):
+        for j in range(height):
+            img = img_switch.get(background_dict.get((i,j)))
+            screen.blit(img,(j*40,i*40))
+        pygame.display.update()
 
+update_layout()
                  
 # Définition des déplacements de MacGyver
 
