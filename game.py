@@ -2,10 +2,16 @@ import pygame
 
 # import du labyrinthe et des couloirs depuis pattern.txt
 background_dict = {}
+width = 0
+height = 0
 with open("pattern.txt", "r", encoding = "utf8") as p:
             for i, line in enumerate(p):
+                if line.strip():
+                    height += 1
                 for j, char in enumerate(line.strip()):
-                    background_dict.update({(i,j): char})                      
+                    background_dict.update({(i,j): char})
+                    if i == 1 : 
+                        width += 1                      
                     
 # extraction du couloir, des positions de MG de de la sortie
 mac_pos = []
@@ -42,8 +48,8 @@ img_switch = {
     "*": mac_img,
     ":": guard_img,
     }
-for i in range(15):
-    for j in range(15):
+for i in range(width):
+    for j in range(height):
         img = img_switch.get(background_dict.get((i,j)))
         screen.blit(img,(j*40,i*40))
     pygame.display.update()
@@ -88,8 +94,8 @@ while mac_pos != exit_pos:
         background_dict[new_coord] = "*"    
         mac_pos = new_coord
     
-    for i in range(15):
-        for j in range(15):
+    for i in range(width):
+        for j in range(height):
             img = img_switch.get(background_dict.get((i,j)))
             screen.blit(img,(j*40,i*40))
         pygame.display.update()    
