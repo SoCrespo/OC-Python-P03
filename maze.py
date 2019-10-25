@@ -21,7 +21,7 @@ pygame.display.set_caption(caption)
 pygame.display.set_icon(mac_img)
 
 # Display layout                        
-def update_layout():
+def display_layout():
     for i in range(width):
         for j in range(height):
             img = img_switch.get(background_dict.get((i,j)))

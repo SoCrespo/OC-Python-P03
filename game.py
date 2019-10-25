@@ -30,7 +30,7 @@ else:
 # Gestion des mouvements
 new_coord = mac_pos
 while mac_pos != exit_pos:
-    update_layout()
+    display_layout()
     
     pygame.time.delay(100)
     for event in pygame.event.get(): 
