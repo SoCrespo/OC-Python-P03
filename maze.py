@@ -14,11 +14,8 @@ def import_maze(pattern):
                 if i == 1 : 
                     width += 1   
     return maze_from_pattern, height, width
-
-# background_dict, height, width = import_maze("pattern.txt")
-                
-# Extracting player, exit and corridor positions in maze
-
+           
+# Extract player, exit and corridor positions in maze
 def get_positions(structure_dict):
     player_pos = []
     exit_pos = []
