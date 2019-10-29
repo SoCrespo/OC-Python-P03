@@ -17,5 +17,8 @@ img_switch = {
     "W": wall_img,
     "*": mac_img,
     ":": guard_img,
+    "e": ether_img,
+    "n": needle_img,
+    "t": tube_img
     }
 caption = "Labyrinthe Mac Gyver"
