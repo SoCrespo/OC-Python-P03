@@ -14,8 +14,8 @@ mac.pos, exit, corridor = get_positions(background_dict)
 tools_positions = random.choices([pos for pos in corridor.keys()
                                    if pos not in [mac.pos, exit]], k=3)
 
-tools = ether, needle, tube = (tool.Tool(img, pos) for img, pos in 
-                               zip((ether_img, needle_img, tube_img), tools_positions))
+tools = ether, needle, tube = [tool.Tool(img, pos) for img, pos in 
+                               zip((ether_img, needle_img, tube_img), tools_positions)]
 
 background_dict[ether.pos] = "e"
 background_dict[needle.pos] = "n"
@@ -47,11 +47,13 @@ while mac.pos != exit:
     for tool in tools:
         if mac.pos == tool.pos:
             mac.bag.append(tool)
-            tools.remove(tool) 
+            tools.remove(tool)        
+
     
-    #TODO : add condition to transform 3 tools into syringe                
-        
-    
-print("Gagné !")
+    if mac.pos == exit:
+        if tools == []:
+            print("Gagné !")
+        else:
+            print("Perdu...")    
            
 pygame.quit()         
