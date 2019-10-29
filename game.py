@@ -6,22 +6,7 @@ from maze import *
 pygame.init()
 mac = hero.Hero()
         
-# Extracting player, exit and corridor positions in maze
-player_pos = []
-exit_pos = []
-corridor = {}
-for coord, char in background_dict.items():
-    if char == "*":
-        player_pos.append(coord)
-    elif char in (":", "_"):
-        corridor.update({coord: char}) 
-        if char == ":":
-            exit_pos.append(coord)     
-if not (len(player_pos) == len(exit_pos) == 1) :
-    raise ValueError("Erreur sur position de MacGyver ou de la sortie")
-else:
-    mac.pos = player_pos[0]
-    exit_pos = exit_pos[0]
+mac.pos, exit_pos, corridor = get_positions()
 
                  
 # Managing MacGyver movements

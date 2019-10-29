@@ -14,6 +14,23 @@ with open("pattern.txt", "r", encoding = "utf8") as p:
             if i == 1 : 
                 width += 1   
                 
+# Extracting player, exit and corridor positions in maze
+
+def get_positions():
+    player_pos = []
+    exit_pos = []
+    corridor = {}
+    for coord, char in background_dict.items():
+        if char == "*":
+            player_pos.append(coord)
+        elif char in (":", "_"):
+            corridor.update({coord: char}) 
+            if char == ":":
+                exit_pos.append(coord)     
+    if not (len(player_pos) == len(exit_pos) == 1) :
+        raise ValueError("Erreur sur position de MacGyver ou de la sortie")
+    else:
+        return player_pos[0], exit_pos[0], corridor                
                 
 # Set game window                        
 screen = pygame.display.set_mode(screen_size)
