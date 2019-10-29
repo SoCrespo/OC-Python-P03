@@ -31,7 +31,9 @@ while mac.pos != exit_pos:
     
     for event in pygame.event.get(): 
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_DOWN:
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit()
+            elif event.key == pygame.K_DOWN:
                 new_coord = mac.down() 
             elif event.key == pygame.K_UP:
                 new_coord = mac.up() 
