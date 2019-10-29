@@ -7,7 +7,7 @@ pygame.init()
 mac = hero.Hero()
         
 # extraction du couloir, des positions de MG de de la sortie
-mac.pos = []
+
 exit_pos = []
 corridor = {}
 for coord, char in background_dict.items():
@@ -32,13 +32,13 @@ while mac.pos != exit_pos:
     for event in pygame.event.get(): 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_DOWN:
-                new_coord = mac.down(mac.pos) 
+                new_coord = mac.down() 
             elif event.key == pygame.K_UP:
-                new_coord = mac.up(mac.pos) 
+                new_coord = mac.up() 
             elif event.key == pygame.K_LEFT:
-                new_coord = mac.left(mac.pos) 
+                new_coord = mac.left() 
             elif event.key == pygame.K_RIGHT:
-                new_coord = mac.right(mac.pos) 
+                new_coord = mac.right() 
             
     if new_coord in corridor:
         background_dict[mac.pos]= "_"
