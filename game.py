@@ -7,27 +7,27 @@ pygame.init()
 mac = hero.Hero()
         
 # extraction du couloir, des positions de MG de de la sortie
-
+player_pos = []
 exit_pos = []
 corridor = {}
 for coord, char in background_dict.items():
     if char == "*":
-        mac.pos.append(coord)
+        player_pos.append(coord)
     elif char in (":", "_"):
         corridor.update({coord: char}) 
         if char == ":":
             exit_pos.append(coord)     
-if not (len(mac.pos) == len(exit_pos) == 1) :
+if not (len(player_pos) == len(exit_pos) == 1) :
     raise ValueError("Erreur sur position de MacGyver ou de la sortie")
 else:
-    mac.pos = mac.pos[0]
+    mac.pos = player_pos[0]
     exit_pos = exit_pos[0]
 
                  
 # Gestion des mouvements
 new_coord = mac.pos
 while mac.pos != exit_pos:
-    display_layout()  
+    display_layout()
     
     for event in pygame.event.get(): 
         if event.type == pygame.KEYDOWN:
