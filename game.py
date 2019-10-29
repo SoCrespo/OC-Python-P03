@@ -1,12 +1,21 @@
+import random
+
 import pygame
 import hero
+import tool
 from params import *
 from maze import *
 
 pygame.init()
 mac = hero.Hero()
-        
+       
 mac.pos, exit, corridor = get_positions()
+
+pos_for_tools = [(i,j) for (i,j) in corridor.keys() if (i, j) not in [mac.pos, exit]]
+tools_positions = random.choices(pos_for_tools, k=3)
+
+ether, needle, tube = (tool.Tool(img, pos) for img, pos in zip(
+    (ether_img, needle_img, tube_img), tools_positions))
 
                  
 # Managing MacGyver movements
