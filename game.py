@@ -6,12 +6,12 @@ from maze import *
 pygame.init()
 mac = hero.Hero()
         
-mac.pos, exit_pos, corridor = get_positions()
+mac.pos, exit, corridor = get_positions()
 
                  
 # Managing MacGyver movements
 new_coord = mac.pos
-while mac.pos != exit_pos:
+while mac.pos != exit:
     display_layout() 
     for event in pygame.event.get(): 
         if event.type == pygame.KEYDOWN:
