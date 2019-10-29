@@ -8,8 +8,8 @@ from maze import *
 
 pygame.init()
 mac = hero.Hero()
-       
-mac.pos, exit, corridor = get_positions()
+background_dict, height, width = import_maze("pattern.txt")
+mac.pos, exit, corridor = get_positions(background_dict)
 
 pos_for_tools = [(i,j) for (i,j) in corridor.keys() if (i, j) not in [mac.pos, exit]]
 tools_positions = random.choices(pos_for_tools, k=3)
@@ -21,7 +21,7 @@ tools = ether, needle, tube = (tool.Tool(img, pos) for img, pos in zip(
 # Managing MacGyver movements
 new_coord = mac.pos
 while mac.pos != exit:
-    display_layout()
+    display_layout(background_dict, width, height)
      
     for event in pygame.event.get(): 
         if event.type == pygame.KEYDOWN:

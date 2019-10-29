@@ -1,8 +1,6 @@
 from params import *
 
 # Convert pattern.txt in maze structure
-
-
 def import_maze(pattern):
     maze_from_pattern = {}
     width = 0
@@ -17,15 +15,15 @@ def import_maze(pattern):
                     width += 1   
     return maze_from_pattern, height, width
 
-background_dict, height, width = import_maze("pattern.txt")
+# background_dict, height, width = import_maze("pattern.txt")
                 
 # Extracting player, exit and corridor positions in maze
 
-def get_positions():
+def get_positions(structure_dict):
     player_pos = []
     exit_pos = []
     corridor = {}
-    for coord, char in background_dict.items():
+    for coord, char in structure_dict.items():
         if char == "*":
             player_pos.append(coord)
         elif char in (":", "_"):
@@ -43,9 +41,9 @@ pygame.display.set_caption(caption)
 pygame.display.set_icon(mac_img)
 
 # Display layout                        
-def display_layout():
+def display_layout(maze_dict, width, height):
     for i in range(width):
         for j in range(height):
-            img = img_switch.get(background_dict.get((i,j)))
+            img = img_switch.get(maze_dict.get((i,j)))
             screen.blit(img,(j*img_height,i*img_width))
         pygame.display.update()                        
