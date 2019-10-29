@@ -17,6 +17,9 @@ tools_positions = random.choices([pos for pos in corridor.keys()
 tools = ether, needle, tube = (tool.Tool(img, pos) for img, pos in 
                                zip((ether_img, needle_img, tube_img), tools_positions))
 
+background_dict[ether.pos] = "e"
+background_dict[needle.pos] = "n"
+background_dict[tube.pos] = "t"
                  
 # Managing MacGyver movements
 new_coord = mac.pos
