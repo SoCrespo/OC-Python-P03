@@ -6,7 +6,7 @@ from maze import *
 pygame.init()
 mac = hero.Hero()
         
-# extraction du couloir, des positions de MG de de la sortie
+# Extracting player, exit and corridor positions in maze
 player_pos = []
 exit_pos = []
 corridor = {}
@@ -24,11 +24,10 @@ else:
     exit_pos = exit_pos[0]
 
                  
-# Gestion des mouvements
+# Managing MacGyver movements
 new_coord = mac.pos
 while mac.pos != exit_pos:
-    display_layout()
-    
+    display_layout() 
     for event in pygame.event.get(): 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
@@ -41,7 +40,6 @@ while mac.pos != exit_pos:
                 new_coord = mac.left() 
             elif event.key == pygame.K_RIGHT:
                 new_coord = mac.right() 
-            
     if new_coord in corridor:
         background_dict[mac.pos]= "_"
         background_dict[new_coord] = "*"    
