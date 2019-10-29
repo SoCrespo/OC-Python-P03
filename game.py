@@ -27,9 +27,8 @@ else:
 # Gestion des mouvements
 new_coord = mac_pos
 while mac_pos != exit_pos:
-    display_layout()
+    display_layout()  
     
-    pygame.time.delay(100)
     for event in pygame.event.get(): 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_DOWN:
