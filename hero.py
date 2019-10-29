@@ -1,6 +1,7 @@
 class Hero:
     def __init__(self):
-       pass
+       self.pos = (1,1)
+       self.bag = []
     
     def up(self):
         x, y = self.pos
