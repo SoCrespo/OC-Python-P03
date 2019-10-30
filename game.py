@@ -66,7 +66,7 @@ while mac.pos != exit:
 
     # End of game
     if mac.pos == exit:
-        if tools == []:
+        if syringe:
             display_end(gagne_img)
         else:
             display_end(perdu_img)
