@@ -22,12 +22,13 @@ for tool in tools:
     background_dict[tool.pos] = tool.letter
 
 
-# Managing MacGyver movements
 new_coord = mac.pos
 display_layout(background_dict, width, height)
 
+# Manage MacGyver movements
 while mac.pos != exit:
 
+    # Get the pressed key
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
@@ -41,22 +42,25 @@ while mac.pos != exit:
             elif event.key == pygame.K_RIGHT:
                 new_coord = mac.right()
 
+    # Update and display player position
     if new_coord in corridor:
         background_dict[mac.pos] = "_"
         background_dict[new_coord] = "*"
         mac.pos = new_coord
         display_layout(background_dict, width, height)
 
+    # Update player's bag content
     for tool in tools:
         if mac.pos == tool.pos:
             mac.bag.append(tool)
             tools.remove(tool)
 
+# End of game
     if mac.pos == exit:
         if tools == []:
             display_end(gagne_img)
         else:
             display_end(perdu_img)
-            
+
 pygame.time.wait(2000)
 pygame.quit()
