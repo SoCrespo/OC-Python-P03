@@ -44,3 +44,8 @@ def display_layout(maze_dict, width, height):
             img = img_switch.get(maze_dict.get((i,j)))
             screen.blit(img,(j*img_height,i*img_width))
         pygame.display.update()                        
+        
+def display_end(img):
+    width, height = screen_size
+    screen.blit(img,(height/3, width/3))  
+    pygame.display.update()       

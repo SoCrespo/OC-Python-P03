@@ -52,8 +52,9 @@ while mac.pos != exit:
     
     if mac.pos == exit:
         if tools == []:
-            print("Gagné !")
+            display_end(gagne_img)
         else:
-            print("Perdu...")    
+            display_end(perdu_img)   
+
            
 pygame.quit()         
