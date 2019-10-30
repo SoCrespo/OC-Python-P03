@@ -56,6 +56,10 @@ while mac.pos != exit:
             tools.remove(tool)
             display_bag(mac.bag)
 
+    if tools == []:
+        display_syringe()
+
+
 # End of game
     if mac.pos == exit:
         if tools == []:

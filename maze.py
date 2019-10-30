@@ -58,6 +58,14 @@ def display_bag(bag):
         pygame.display.update()
 
 
+def display_syringe():
+    width, height = screen_size
+    x = width - img_width
+    y = 6 * img_height
+    screen.fill((0, 0, 0), (x, 0, width, y))
+    screen.blit(syringe_img, (x, y))
+
+
 def display_end(img):
     width, height = screen_size
     screen.blit(img, (height/3, width/3))
