@@ -6,18 +6,19 @@ import tool
 from params import *
 from maze import *
 
+# Instantiate game and MacGyver
 pygame.init()
 mac = hero.Hero()
 background_dict, height, width = import_maze("pattern.txt")
 mac.pos, exit, corridor = get_positions(background_dict)
 
+# Select random positions for tools in corridor
 tools_positions = random.sample([pos for pos in corridor.keys()
                                    if pos not in [mac.pos, exit]], 3)
 tools = ether, needle, tube = [tool.Tool(letter, pos) for letter, pos in 
                                zip(("e", "n", "t"), tools_positions)]
 for tool in tools :
     background_dict[tool.pos] = tool.letter
-
                  
 # Managing MacGyver movements
 new_coord = mac.pos
@@ -48,7 +49,6 @@ while mac.pos != exit:
         if mac.pos == tool.pos:
             mac.bag.append(tool)
             tools.remove(tool)        
-
     
     if mac.pos == exit:
         if tools == []:
