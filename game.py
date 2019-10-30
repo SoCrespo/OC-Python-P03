@@ -54,6 +54,7 @@ while mac.pos != exit:
         if mac.pos == tool.pos:
             mac.bag.append(tool)
             tools.remove(tool)
+            display_bag(mac.bag)
 
 # End of game
     if mac.pos == exit:

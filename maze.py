@@ -41,12 +41,20 @@ pygame.display.set_caption(caption)
 pygame.display.set_icon(mac_img)
 
 
-# Display layout
 def display_layout(maze_dict, width, height):
     for i in range(width):
         for j in range(height):
             img = img_switch.get(maze_dict.get((i, j)))
             screen.blit(img, (j*img_height, i*img_width))
+        pygame.display.update()
+
+
+def display_bag(bag):
+    width, height = screen_size
+    x = width - img_width
+    for tool in bag:
+        y = height - (img_height * (3 - bag.index(tool)))
+        screen.blit(img_switch[tool.letter], (x, y))
         pygame.display.update()
 
 
