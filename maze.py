@@ -53,7 +53,7 @@ def display_bag(bag):
     width, height = screen_size
     x = width - img_width
     for tool in bag:
-        y = height - (img_height * (3 - bag.index(tool)))
+        y = img_height * 2 * bag.index(tool)
         screen.blit(img_switch[tool.letter], (x, y))
         pygame.display.update()
 
