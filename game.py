@@ -12,7 +12,8 @@ mac = hero.Hero()
 background_dict, height, width = import_maze("pattern.txt")
 mac.pos, exit, corridor = get_positions(background_dict)
 
-# Select random positions for tools in corridor
+
+# Select 3 random positions for tools in corridor
 tools_positions = random.sample([pos for pos in corridor.keys()
                                 if pos not in [mac.pos, exit]], 3)
 tools = ether, needle, tube = [tool.Tool(letter, pos) for letter, pos in
@@ -20,8 +21,8 @@ tools = ether, needle, tube = [tool.Tool(letter, pos) for letter, pos in
 for tool in tools:
     background_dict[tool.pos] = tool.letter
 
-# Managing MacGyver movements
 
+# Managing MacGyver movements
 new_coord = mac.pos
 display_layout(background_dict, width, height)
 
@@ -56,5 +57,6 @@ while mac.pos != exit:
             display_end(gagne_img)
         else:
             display_end(perdu_img)
-
+            
+pygame.time.wait(2000)
 pygame.quit()
