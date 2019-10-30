@@ -21,11 +21,13 @@ tools = ether, needle, tube = [tool.Tool(letter, pos) for letter, pos in
 for tool in tools:
     background_dict[tool.pos] = tool.letter
 
-
-new_coord = mac.pos
+# Display game deck at its inital position
 display_layout(background_dict, width, height)
 
 # Manage MacGyver movements
+new_coord = mac.pos
+syringe = False
+
 while mac.pos != exit:
 
     # Get the pressed key
@@ -56,11 +58,13 @@ while mac.pos != exit:
             tools.remove(tool)
             display_bag(mac.bag)
 
-    if tools == []:
-        display_syringe()
+    # Transform 3 tools into syringe
+    if tools == [] and not syringe:
+        pygame.time.wait(500)
+        make_syringe()
+        syringe = True
 
-
-# End of game
+    # End of game
     if mac.pos == exit:
         if tools == []:
             display_end(gagne_img)

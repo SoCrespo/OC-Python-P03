@@ -58,7 +58,7 @@ def display_bag(bag):
         pygame.display.update()
 
 
-def display_syringe():
+def make_syringe():
     width, height = screen_size
     x = width - img_width
     y = 6 * img_height
