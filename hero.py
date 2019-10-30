@@ -18,3 +18,6 @@ class Hero:
     def right(self):
         x, y = self.pos 
         return (x, y + 1)
+    
+if __name__ == "__main__":
+    pass    
