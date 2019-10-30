@@ -21,8 +21,9 @@ for tool in tools :
                  
 # Managing MacGyver movements
 new_coord = mac.pos
+display_layout(background_dict, width, height)
+
 while mac.pos != exit:
-    display_layout(background_dict, width, height)
      
     for event in pygame.event.get(): 
         if event.type == pygame.KEYDOWN:
@@ -41,6 +42,7 @@ while mac.pos != exit:
         background_dict[mac.pos]= "_"
         background_dict[new_coord] = "*"    
         mac.pos = new_coord
+        display_layout(background_dict, width, height)
     
     for tool in tools:
         if mac.pos == tool.pos:
