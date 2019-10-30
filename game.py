@@ -11,8 +11,8 @@ mac = hero.Hero()
 background_dict, height, width = import_maze("pattern.txt")
 mac.pos, exit, corridor = get_positions(background_dict)
 
-tools_positions = random.choices([pos for pos in corridor.keys()
-                                   if pos not in [mac.pos, exit]], k=3)
+tools_positions = random.sample([pos for pos in corridor.keys()
+                                   if pos not in [mac.pos, exit]], 3)
 tools = ether, needle, tube = [tool.Tool(letter, pos) for letter, pos in 
                                zip(("e", "n", "t"), tools_positions)]
 for tool in tools :
