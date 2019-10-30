@@ -11,6 +11,8 @@ guard_img = pygame.image.load("./resources/guard.png")
 needle_img = pygame.image.load("./resources/needle.png")
 tube_img = pygame.image.load("./resources/tube.png")
 ether_img = pygame.image.load("./resources/ether.png")
+gagne_img = pygame.image.load("./resources/gagne.png")
+perdu_img = pygame.image.load("./resources/perdu.png")
 
 img_switch = {
     "_": floor_img,
