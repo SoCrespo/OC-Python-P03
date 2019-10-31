@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+# coding: utf-8
+
 import pygame
 from params import *
 
@@ -77,3 +80,7 @@ class Maze:
         self.screen.blit(img, (self.height / 5 * img_height,
                                self.width / 5 * img_width))
         pygame.display.update()
+
+
+if __name__ == "__main__":
+    pass
