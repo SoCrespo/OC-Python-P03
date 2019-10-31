@@ -19,6 +19,8 @@ tools_positions = random.sample([pos for pos in laby.corridor.keys()
                                 if pos not in [mac.pos, laby.exit]], 3)
 tools = ether, needle, tube = [tool.Tool(letter, pos) for letter, pos in
                                zip(("e", "n", "t"), tools_positions)]
+
+# Assign tools positions in game dictionary
 for tool in tools:
     laby.background[tool.pos] = tool.letter
 
