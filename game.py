@@ -3,32 +3,33 @@ import random
 import pygame
 import hero
 import tool
+import maze
 from params import *
-from maze import *
+
 
 # Instantiate game and MacGyver
 pygame.init()
+laby = maze.Maze(PATTERN)
 mac = hero.Hero()
-background_dict, height, width = import_maze("pattern.txt")
-mac.pos, exit, corridor = get_positions(background_dict)
+mac.pos = laby.startpos
 
 
-# Select 3 random positions for tools in corridor
-tools_positions = random.sample([pos for pos in corridor.keys()
-                                if pos not in [mac.pos, exit]], 3)
+# Select 3 random positions for tools in laby.corridor
+tools_positions = random.sample([pos for pos in laby.corridor.keys()
+                                if pos not in [mac.pos, laby.exit]], 3)
 tools = ether, needle, tube = [tool.Tool(letter, pos) for letter, pos in
                                zip(("e", "n", "t"), tools_positions)]
 for tool in tools:
-    background_dict[tool.pos] = tool.letter
+    laby.background[tool.pos] = tool.letter
 
 # Display game deck at its inital position
-display_layout(background_dict, width, height)
+display_layout(laby.background, width, height)
 
 # Manage MacGyver movements
 new_coord = mac.pos
 syringe = False
 
-while mac.pos != exit:
+while mac.pos != laby.exit:
 
     # Get the pressed key
     for event in pygame.event.get():
@@ -45,11 +46,11 @@ while mac.pos != exit:
                 new_coord = mac.right()
 
     # Update and display player position
-    if new_coord in corridor:
-        background_dict[mac.pos] = "_"
-        background_dict[new_coord] = "*"
+    if new_coord in laby.corridor:
+        laby.background[mac.pos] = "_"
+        laby.background[new_coord] = "*"
         mac.pos = new_coord
-        display_layout(background_dict, width, height)
+        display_layout(laby.background, width, height)
 
     # Update player's bag content
     for tool in tools:
@@ -65,7 +66,7 @@ while mac.pos != exit:
         syringe = True
 
     # End of game
-    if mac.pos == exit:
+    if mac.pos == laby.exit:
         if syringe:
             display_end(gagne_img)
         else:
