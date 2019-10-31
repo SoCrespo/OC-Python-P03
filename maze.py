@@ -57,7 +57,7 @@ class Maze:
             self.screen.blit(img_switch[tool.letter], (x, y))
             pygame.display.update()
 
-    def show_syringe(self):
+    def display_syringe(self):
         x = self.width * img_width
         y = 6 * img_height
         self.screen.fill((0, 0, 0), (x, 0, self.width * img_width, y))

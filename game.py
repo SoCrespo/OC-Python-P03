@@ -62,7 +62,7 @@ while mac.pos != laby.exit:
     # Transform 3 tools into syringe
     if tools == [] and not syringe:
         pygame.time.wait(500)
-        laby.show_syringe()
+        laby.display_syringe()
         syringe = True
 
     # End of game
