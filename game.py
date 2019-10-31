@@ -23,7 +23,7 @@ for tool in tools:
     laby.background[tool.pos] = tool.letter
 
 # Display game deck at its inital position
-display_layout(laby.background, width, height)
+laby.display_layout()
 
 # Manage MacGyver movements
 new_coord = mac.pos
@@ -50,27 +50,27 @@ while mac.pos != laby.exit:
         laby.background[mac.pos] = "_"
         laby.background[new_coord] = "*"
         mac.pos = new_coord
-        display_layout(laby.background, width, height)
+        laby.display_layout()
 
     # Update player's bag content
     for tool in tools:
         if mac.pos == tool.pos:
             mac.bag.append(tool)
             tools.remove(tool)
-            display_bag(mac.bag)
+            laby.display_bag(mac.bag)
 
     # Transform 3 tools into syringe
     if tools == [] and not syringe:
         pygame.time.wait(500)
-        make_syringe()
+        laby.show_syringe()
         syringe = True
 
     # End of game
     if mac.pos == laby.exit:
         if syringe:
-            display_end(gagne_img)
+            laby.display_end(gagne_img)
         else:
-            display_end(perdu_img)
+            laby.display_end(perdu_img)
 
 pygame.time.wait(2000)
 pygame.quit()

@@ -7,6 +7,9 @@ class Maze:
         self.pattern = pattern
         self.background, self.height, self.width = self._import_maze()
         self.startpos, self.exit, self.corridor = self._get_positions()
+        self.screen = pygame.display.set_mode(screen_size)
+        pygame.display.set_caption(caption)
+        pygame.display.set_icon(mac_img)
 
     # Convert pattern.txt in maze structure
     def _import_maze(self):
@@ -40,34 +43,27 @@ class Maze:
         else:
             return startpos[0], exit[0], corridor
 
-    # Set game window
-    screen = pygame.display.set_mode(screen_size)
-    pygame.display.set_caption(caption)
-    pygame.display.set_icon(mac_img)
-
-    def display_layout(maze_dict, width, height):
+    def display_layout(self):
         for i in range(self.width):
-            for j in range(self.startheight):
+            for j in range(self.height):
                 img = img_switch.get(self.background.get((i, j)))
-                screen.blit(img, (j*img_height, i*img_width))
+                self.screen.blit(img, (j*img_height, i*img_width))
             pygame.display.update()
 
-    def display_bag(bag):
-        width, height = screen_size
-        x = width - img_width
+    def display_bag(self, bag):
+        x = self.width * img_width
         for tool in bag:
             y = img_height * 2 * bag.index(tool)
-            screen.blit(img_switch[tool.letter], (x, y))
+            self.screen.blit(img_switch[tool.letter], (x, y))
             pygame.display.update()
 
-    def make_syringe():
-        width, height = screen_size
-        x = width - img_width
+    def show_syringe(self):
+        x = self.width * img_width
         y = 6 * img_height
-        screen.fill((0, 0, 0), (x, 0, width, y))
-        screen.blit(syringe_img, (x, y))
+        self.screen.fill((0, 0, 0), (x, 0, self.width * img_width, y))
+        self.screen.blit(syringe_img, (x, y))
 
-    def display_end(img):
-        width, height = screen_size
-        screen.blit(img, (height/3, width/3))
+    def display_end(self, img):
+        self.screen.blit(img, (self.height / 3 * img_height,
+                               self.width / 3 * img_width))
         pygame.display.update()
