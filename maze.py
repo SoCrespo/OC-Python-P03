@@ -49,6 +49,7 @@ class Maze:
         else:
             return startpos[0], exit[0], corridor
 
+    # Display game board
     def display_layout(self):
         for i in range(self.width):
             for j in range(self.height):
@@ -56,6 +57,7 @@ class Maze:
                 self.screen.blit(img, (j*img_height, i*img_width))
             pygame.display.update()
 
+    # Display player's bag content
     def display_bag(self, bag):
         x = self.width * img_width
         for tool in bag:
@@ -63,13 +65,15 @@ class Maze:
             self.screen.blit(img_switch[tool.letter], (x, y))
             pygame.display.update()
 
+    # Erase tool imgs and display syringe
     def display_syringe(self):
         x = self.width * img_width
         y = 6 * img_height
         self.screen.fill((0, 0, 0), (x, 0, self.width * img_width, y))
         self.screen.blit(syringe_img, (x, y))
 
+    # Display result of game
     def display_end(self, img):
-        self.screen.blit(img, (self.height / 3 * img_height,
-                               self.width / 3 * img_width))
+        self.screen.blit(img, (self.height / 5 * img_height,
+                               self.width / 5 * img_width))
         pygame.display.update()
