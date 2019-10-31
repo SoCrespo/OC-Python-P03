@@ -8,10 +8,10 @@ from params import *
 
 
 # Instantiate game and MacGyver
-pygame.init()
 laby = maze.Maze(PATTERN)
 mac = hero.Hero()
 mac.pos = laby.startpos
+laby.open_game()
 
 
 # Select 3 random positions for tools in laby.corridor
@@ -61,7 +61,7 @@ while mac.pos != laby.exit:
 
     # Transform 3 tools into syringe
     if tools == [] and not syringe:
-        pygame.time.wait(500)
+        laby.wait(500)
         laby.display_syringe()
         syringe = True
 
@@ -72,5 +72,5 @@ while mac.pos != laby.exit:
         else:
             laby.display_end(perdu_img)
 
-pygame.time.wait(2000)
-pygame.quit()
+laby.wait(2000)
+laby.close_game()

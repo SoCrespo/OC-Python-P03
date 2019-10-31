@@ -1,3 +1,4 @@
+import pygame
 from params import *
 
 
@@ -10,6 +11,16 @@ class Maze:
         self.screen = pygame.display.set_mode(screen_size)
         pygame.display.set_caption(caption)
         pygame.display.set_icon(mac_img)
+
+    # interfaces with pygame
+    def open_game(self):
+        pygame.init()
+
+    def close_game(self):
+        pygame.quit()
+
+    def wait(self, duration):
+        pygame.time.wait(duration)
 
     # Convert pattern.txt in maze structure
     def _import_maze(self):
