@@ -1,5 +1,7 @@
 import pygame
 
+PATTERN = "pattern.txt"
+
 screen_size = 800, 800
 img_height = 40
 img_width = 40

@@ -1,72 +1,75 @@
+import pygame
 from params import *
 
 
-# Convert pattern.txt in maze structure
-def import_maze(pattern):
-    maze_from_pattern = {}
-    width = 0
-    height = 0
-    with open(pattern, "r", encoding="utf8") as p:
-        for i, line in enumerate(p):
-            if line.strip():
-                height += 1
-            for j, char in enumerate(line.strip()):
-                maze_from_pattern.update({(i, j): char})
-                if i == 1:
-                    width += 1
-    return maze_from_pattern, height, width
+class Maze:
 
+    def __init__(self, pattern):
+        self.pattern = pattern
+        self.background, self.height, self.width = self._import_maze()
+        self.startpos, self.exit, self.corridor = self._get_positions()
+        self.screen = pygame.display.set_mode(screen_size)
+        pygame.display.set_caption(caption)
+        pygame.display.set_icon(mac_img)
 
-# Extract player, exit and corridor positions in maze
-def get_positions(structure_dict):
-    player_pos = []
-    exit_pos = []
-    corridor = {}
-    for coord, char in structure_dict.items():
-        if char == "*":
-            player_pos.append(coord)
-        elif char in (":", "_"):
-            corridor.update({coord: char})
-            if char == ":":
-                exit_pos.append(coord)
-    if not (len(player_pos) == len(exit_pos) == 1):
-        raise ValueError("Erreur sur position de MacGyver ou de la sortie")
-    else:
-        return player_pos[0], exit_pos[0], corridor
+    # interfaces with pygame
+    open_game = pygame.init
+    close_game = pygame.quit
+    wait = pygame.time.wait
 
+    # Convert pattern.txt in maze structure
+    def _import_maze(self):
+        maze_from_pattern = {}
+        width = 0
+        height = 0
+        with open(self.pattern, "r", encoding="utf8") as p:
+            for i, line in enumerate(p):
+                if line.strip():
+                    height += 1
+                for j, char in enumerate(line.strip()):
+                    maze_from_pattern.update({(i, j): char})
+                    if i == 1:
+                        width += 1
+        return maze_from_pattern, height, width
 
-# Set game window
-screen = pygame.display.set_mode(screen_size)
-pygame.display.set_caption(caption)
-pygame.display.set_icon(mac_img)
+    # Extract player, exit and corridor positions in maze
+    def _get_positions(self):
+        startpos = []
+        exit = []
+        corridor = {}
+        for coord, char in self.background.items():
+            if char == "*":
+                startpos.append(coord)
+            elif char in (":", "_"):
+                corridor.update({coord: char})
+                if char == ":":
+                    exit.append(coord)
+        if not (len(startpos) == len(exit) == 1):
+            raise ValueError("Erreur sur position de MacGyver ou de la sortie")
+        else:
+            return startpos[0], exit[0], corridor
 
+    def display_layout(self):
+        for i in range(self.width):
+            for j in range(self.height):
+                img = img_switch.get(self.background.get((i, j)))
+                self.screen.blit(img, (j*img_height, i*img_width))
+            pygame.display.update()
 
-def display_layout(maze_dict, width, height):
-    for i in range(width):
-        for j in range(height):
-            img = img_switch.get(maze_dict.get((i, j)))
-            screen.blit(img, (j*img_height, i*img_width))
+    def display_bag(self, bag):
+        x = self.width * img_width
+        for tool in bag:
+            y = img_height * 2 * bag.index(tool)
+            self.screen.blit(img_switch[tool.letter], (x, y))
+            pygame.display.update()
+
+    def display_syringe(self):
+        x = self.width * img_width
+        y = 6 * img_height
+        self.screen.fill((0, 0, 0), (x, 0, self.width * img_width, y))
+        self.screen.blit(syringe_img, (x, y))
+
+    def display_end(self, img):
+        self.screen.blit(img, (self.height / 3 * img_height,
+                               self.width / 3 * img_width))
         pygame.display.update()
-
-
-def display_bag(bag):
-    width, height = screen_size
-    x = width - img_width
-    for tool in bag:
-        y = img_height * 2 * bag.index(tool)
-        screen.blit(img_switch[tool.letter], (x, y))
-        pygame.display.update()
-
-
-def make_syringe():
-    width, height = screen_size
-    x = width - img_width
-    y = 6 * img_height
-    screen.fill((0, 0, 0), (x, 0, width, y))
-    screen.blit(syringe_img, (x, y))
-
-
-def display_end(img):
-    width, height = screen_size
-    screen.blit(img, (height/3, width/3))
-    pygame.display.update()
