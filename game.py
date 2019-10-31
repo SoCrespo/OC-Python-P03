@@ -1,100 +1,75 @@
+import random
+
 import pygame
+import hero
+import tool
+from params import *
+from maze import *
 
-# import du labyrinthe et des couloirs depuis pattern.txt
-background_dict = {}
-with open("pattern.txt", "r", encoding = "utf8") as p:
-            for i, line in enumerate(p):
-                for j, char in enumerate(line.strip()):
-                    background_dict.update({(i,j): char})                      
-                    
-# extraction du couloir, des positions de MG de de la sortie
-mac_pos = []
-exit_pos = []
-corridor = {}
-for coord, char in background_dict.items():
-    if char == "*":
-        mac_pos.append(coord)
-    elif char in (":", "_"):
-        corridor.update({coord: char}) 
-        if char == ":":
-            exit_pos.append(coord)     
-if not (len(mac_pos) == len(exit_pos) == 1) :
-    raise ValueError("Erreur sur position de MacGyver ou de la sortie")
-else:
-    mac_pos = mac_pos[0]
-    exit_pos = exit_pos[0]
-
-# Affichage du labyrinthe
+# Instantiate game and MacGyver
 pygame.init()
-screen_size = 800, 800
-
-floor_img = pygame.image.load("./resources/floor.png")
-wall_img = pygame.image.load("./resources/wall.png")
-mac_img = pygame.image.load("./resources/macgyver.png")
-guard_img = pygame.image.load("./resources/guard.png")
-    
-screen = pygame.display.set_mode(screen_size)
-pygame.display.set_caption("Labyrinthe Mac Gyver")
-pygame.display.set_icon(mac_img)
-img_switch = {
-    "_": floor_img,
-    "W": wall_img,
-    "*": mac_img,
-    ":": guard_img,
-    }
-for i in range(15):
-    for j in range(15):
-        img = img_switch.get(background_dict.get((i,j)))
-        screen.blit(img,(j*40,i*40))
-    pygame.display.update()
-
-                 
-# Définition des déplacements de MacGyver
-
-def up(coord):
-    x, y = coord
-    return (x - 1, y)
-
-def down(coord):
-    x, y = coord
-    return (x + 1, y)    
-
-def left(coord):
-    x, y = coord
-    return (x, y - 1)
-
-def right(coord):
-    x, y = coord
-    return (x, y + 1)
+mac = hero.Hero()
+background_dict, height, width = import_maze("pattern.txt")
+mac.pos, exit, corridor = get_positions(background_dict)
 
 
-# Gestion des mouvements
-new_coord = mac_pos
-while mac_pos != exit_pos:
-    pygame.time.delay(100)
-    for event in pygame.event.get(): 
+# Select 3 random positions for tools in corridor
+tools_positions = random.sample([pos for pos in corridor.keys()
+                                if pos not in [mac.pos, exit]], 3)
+tools = ether, needle, tube = [tool.Tool(letter, pos) for letter, pos in
+                               zip(("e", "n", "t"), tools_positions)]
+for tool in tools:
+    background_dict[tool.pos] = tool.letter
+
+# Display game deck at its inital position
+display_layout(background_dict, width, height)
+
+# Manage MacGyver movements
+new_coord = mac.pos
+syringe = False
+
+while mac.pos != exit:
+
+    # Get the pressed key
+    for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_DOWN:
-                new_coord = down(mac_pos) 
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit()
+            elif event.key == pygame.K_DOWN:
+                new_coord = mac.down()
             elif event.key == pygame.K_UP:
-                new_coord = up(mac_pos) 
+                new_coord = mac.up()
             elif event.key == pygame.K_LEFT:
-                new_coord = left(mac_pos) 
+                new_coord = mac.left()
             elif event.key == pygame.K_RIGHT:
-                new_coord = right(mac_pos) 
-            
+                new_coord = mac.right()
+
+    # Update and display player position
     if new_coord in corridor:
-        background_dict[mac_pos]= "_"
-        background_dict[new_coord] = "*"    
-        mac_pos = new_coord
-    
-    for i in range(15):
-        for j in range(15):
-            img = img_switch.get(background_dict.get((i,j)))
-            screen.blit(img,(j*40,i*40))
-        pygame.display.update()    
-           
-    
-print("Gagné !")
-           
-pygame.quit()         
+        background_dict[mac.pos] = "_"
+        background_dict[new_coord] = "*"
+        mac.pos = new_coord
+        display_layout(background_dict, width, height)
+
+    # Update player's bag content
+    for tool in tools:
+        if mac.pos == tool.pos:
+            mac.bag.append(tool)
+            tools.remove(tool)
+            display_bag(mac.bag)
+
+    # Transform 3 tools into syringe
+    if tools == [] and not syringe:
+        pygame.time.wait(500)
+        make_syringe()
+        syringe = True
+
+    # End of game
+    if mac.pos == exit:
+        if syringe:
+            display_end(gagne_img)
+        else:
+            display_end(perdu_img)
+
+pygame.time.wait(2000)
+pygame.quit()
