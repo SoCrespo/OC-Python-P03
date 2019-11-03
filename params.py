@@ -3,8 +3,8 @@ import pygame
 PATTERN = "pattern.txt"
 
 SCREEN_SIZE = 640, 600
-img_height = 40
-img_width = 40
+IMG_HEIGHT = 40
+IMG_WIDTH = 40
 
 floor_img = pygame.image.load("./resources/floor.png")
 wall_img = pygame.image.load("./resources/wall.png")

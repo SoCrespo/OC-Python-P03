@@ -82,28 +82,28 @@ class Maze:
         for i in range(self.width):
             for j in range(self.height):
                 img = img_switch.get(self.background.get((i, j)))
-                self.screen.blit(img, (j*img_height, i*img_width))
+                self.screen.blit(img, (j*IMG_HEIGHT, i*IMG_WIDTH))
             pygame.display.update()
 
     def display_bag(self, bag):
         """Display mac's bag content on the maze side."""
-        x = self.width * img_width
+        x = self.width * IMG_WIDTH
         for tool in bag:
-            y = img_height * 2 * bag.index(tool)
+            y = IMG_HEIGHT * 2 * bag.index(tool)
             self.screen.blit(img_switch[tool.letter], (x, y))
             pygame.display.update()
 
     def display_syringe(self):
         """Erase picked up tools and display the syringe."""
-        x = self.width * img_width
-        y = 6 * img_height
-        self.screen.fill((0, 0, 0), (x, 0, self.width * img_width, y))
+        x = self.width * IMG_WIDTH
+        y = 6 * IMG_HEIGHT
+        self.screen.fill((0, 0, 0), (x, 0, self.width * IMG_WIDTH, y))
         self.screen.blit(syringe_img, (x, y))
 
     def display_end(self, img):
         """Display the result of the game."""
-        self.screen.blit(img, (self.height / 5 * img_height,
-                               self.width / 5 * img_width))
+        self.screen.blit(img, (self.height / 5 * IMG_HEIGHT,
+                               self.width / 5 * IMG_WIDTH))
         pygame.display.update()
 
 
