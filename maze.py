@@ -1,12 +1,13 @@
+"""Manage the game board displaying."""
+
 #! /usr/bin/env python3
 # coding: utf-8
 
 import pygame
 from params import *
 
-
 class Maze:
-
+"""Display the game board"""
     def __init__(self, pattern):
         self.pattern = pattern
         self.background, self.height, self.width = self._import_maze()
@@ -15,19 +16,27 @@ class Maze:
         pygame.display.set_caption(caption)
         pygame.display.set_icon(mac_img)
 
-    # interfaces with pygame
     def open_game(self):
+        """Return pygame.init."""
         pygame.init
-    
-    
+        
     def close_game(self):
+        """Return pygame.quit."""
         pygame.quit
     
     def wait(self, duration):
+        """Return pygame.type.wait."""
         pygame.time.wait(duration)
 
-    # Convert pattern.txt in maze structure
     def _import_maze(self):
+        """
+        Convert txt pattern into dictionary.
+        Return a tuple with:
+        - this dictionary,
+        - heigth (number of lines)
+        - width (number of characters)
+        of the pattern.
+        """
         maze_from_pattern = {}
         width = 0
         height = 0
@@ -41,8 +50,13 @@ class Maze:
                         width += 1
         return maze_from_pattern, height, width
 
-    # Extract player, exit and corridor positions in maze
     def _get_positions(self):
+        """
+        Return a tuple with :
+        - macGyver start position (tuple)
+        - exit position (tuple)
+        - dictionary of the corridors cells
+        """
         startpos = []
         exit = []
         corridor = {}
@@ -58,31 +72,33 @@ class Maze:
         else:
             return startpos[0], exit[0], corridor
 
-    # Display game board
-    def display_layout(self):
+        def display_layout(self):
+            """Display game board."""
         for i in range(self.width):
             for j in range(self.height):
                 img = img_switch.get(self.background.get((i, j)))
                 self.screen.blit(img, (j*img_height, i*img_width))
             pygame.display.update()
 
-    # Display player's bag content
-    def display_bag(self, bag):
+        def display_bag(self, bag):
+            """Display mac's bag content on the maze side"""
         x = self.width * img_width
         for tool in bag:
             y = img_height * 2 * bag.index(tool)
             self.screen.blit(img_switch[tool.letter], (x, y))
             pygame.display.update()
 
-    # Erase tool imgs and display syringe
+    
     def display_syringe(self):
+        """Erase picked up tools and display the syringe."""
         x = self.width * img_width
         y = 6 * img_height
         self.screen.fill((0, 0, 0), (x, 0, self.width * img_width, y))
         self.screen.blit(syringe_img, (x, y))
 
-    # Display result of game
+   
     def display_end(self, img):
+        """Displays the result of the game."""
         self.screen.blit(img, (self.height / 5 * img_height,
                                self.width / 5 * img_width))
         pygame.display.update()
