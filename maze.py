@@ -14,7 +14,7 @@ class Maze:
         self.pattern = pattern
         self.background, self.height, self.width = self._import_maze()
         self.startpos, self.exit, self.corridor = self._get_positions()
-        self.screen = pygame.display.set_mode(screen_size)
+        self.screen = pygame.display.set_mode(SCREEN_SIZE)
         pygame.display.set_caption(caption)
         pygame.display.set_icon(mac_img)
 
