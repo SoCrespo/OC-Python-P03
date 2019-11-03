@@ -16,9 +16,15 @@ class Maze:
         pygame.display.set_icon(mac_img)
 
     # interfaces with pygame
-    open_game = pygame.init
-    close_game = pygame.quit
-    wait = pygame.time.wait
+    def open_game(self):
+        pygame.init
+    
+    
+    def close_game(self):
+        pygame.quit
+    
+    def wait(self, duration):
+        pygame.time.wait(duration)
 
     # Convert pattern.txt in maze structure
     def _import_maze(self):
