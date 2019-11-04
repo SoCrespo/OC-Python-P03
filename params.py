@@ -16,6 +16,7 @@ ether_img = pygame.image.load("./resources/ether.png")
 syringe_img = pygame.image.load("./resources/syringe.png")
 gagne_img = pygame.image.load("./resources/gagne.png")
 perdu_img = pygame.image.load("./resources/perdu.png")
+menu_img = pygame.image.load("./resources/menu.png")
 
 img_switch = {
     "_": floor_img,
