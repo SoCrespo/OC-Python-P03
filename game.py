@@ -2,83 +2,71 @@
 # coding: utf-8
 
 import random
-
-import pygame
-import hero
 import tool
-import maze
-from params import *
+import pygame as py
+import params
 
 
-# Instantiate game and MacGyver
-laby = maze.Maze(PATTERN)
-mac = hero.Hero()
-mac.pos = laby.startpos
-laby.open_game()
+def play(maze, player):
 
-# Wait for the player to press ENTER to play or ESC to exit
-laby.start_menu()
+    # Select 3 random positions for tools in maze.corridor
+    tools_positions = random.sample([pos for pos in maze.corridor.keys()
+                                    if pos not in [player.pos, maze.exit]], 3)
+    tools = [tool.Tool(letter, pos) for letter, pos in
+             zip(("e", "n", "t"), tools_positions)]
 
-# Select 3 random positions for tools in laby.corridor
-tools_positions = random.sample([pos for pos in laby.corridor.keys()
-                                if pos not in [mac.pos, laby.exit]], 3)
-tools = [tool.Tool(letter, pos) for letter, pos in
-                               zip(("e", "n", "t"), tools_positions)]
+    # Assign tools positions in game dictionary
+    for item in tools:
+        maze.background[item.pos] = item.letter
 
-# Assign tools positions in game dictionary
-for tool in tools:
-    laby.background[tool.pos] = tool.letter
+    # Display game deck at its inital position
+    maze.display_layout()
 
-# Display game deck at its inital position
-laby.display_layout()
+    # Manage MacGyver movements
+    new_coord = player.pos
+    syringe = False
 
+    while player.pos != maze.exit:
 
-# Manage MacGyver movements
-new_coord = mac.pos
-syringe = False
+        # Get the pressed key
+        for event in py.event.get():
+            if event.type == py.KEYDOWN:
+                if event.key == py.K_ESCAPE:
+                    py.quit()
+                elif event.key == py.K_DOWN:
+                    new_coord = player.down()
+                elif event.key == py.K_UP:
+                    new_coord = player.up()
+                elif event.key == py.K_LEFT:
+                    new_coord = player.left()
+                elif event.key == py.K_RIGHT:
+                    new_coord = player.right()
 
-while mac.pos != laby.exit:
+        # Update and display player position
+        if new_coord in maze.corridor:
+            maze.background[player.pos] = "_"
+            maze.background[new_coord] = "*"
+            player.pos = new_coord
+            maze.display_layout()
 
-    # Get the pressed key
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
-                pygame.quit()
-            elif event.key == pygame.K_DOWN:
-                new_coord = mac.down()
-            elif event.key == pygame.K_UP:
-                new_coord = mac.up()
-            elif event.key == pygame.K_LEFT:
-                new_coord = mac.left()
-            elif event.key == pygame.K_RIGHT:
-                new_coord = mac.right()
+        # Update player's bag content
+        for item in tools:
+            if player.pos == item.pos:
+                player.bag.append(item)
+                tools.remove(item)
+                maze.display_bag(player.bag)
 
-    # Update and display player position
-    if new_coord in laby.corridor:
-        laby.background[mac.pos] = "_"
-        laby.background[new_coord] = "*"
-        mac.pos = new_coord
-        laby.display_layout()
+        # Transform 3 tools into syringe
+        if len(player.bag) == 3 and not syringe:
+            maze.wait(500)
+            maze.display_syringe()
+            syringe = True
 
-    # Update player's bag content
-    for tool in tools:
-        if mac.pos == tool.pos:
-            mac.bag.append(tool)
-            tools.remove(tool)
-            laby.display_bag(mac.bag)
+        # End of game
+        if player.pos == maze.exit:
+            if syringe:
+                maze.display_end(params.gagne_img)
+            else:
+                maze.display_end(params.perdu_img)
+            maze.wait(2000)
 
-    # Transform 3 tools into syringe
-    if len(mac.bag) == 3 and not syringe:
-        laby.wait(500)
-        laby.display_syringe()
-        syringe = True
-
-    # End of game
-    if mac.pos == laby.exit:
-        if syringe:
-            laby.display_end(gagne_img)
-        else:
-            laby.display_end(perdu_img)
-
-laby.wait(2000)
-laby.close_game()

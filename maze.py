@@ -103,7 +103,7 @@ class Maze:
             for j in range(self.height):
                 img = img_switch.get(self.background.get((i, j)))
                 self.screen.blit(img, (j*IMG_HEIGHT, i*IMG_WIDTH))
-            pygame.display.update()
+            pygame.display.flip()
 
     def display_bag(self, bag):
         """Display mac's bag content on the maze side."""
