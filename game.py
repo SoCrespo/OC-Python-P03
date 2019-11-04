@@ -68,7 +68,7 @@ while mac.pos != laby.exit:
             laby.display_bag(mac.bag)
 
     # Transform 3 tools into syringe
-    if tools == [] and not syringe:
+    if len(mac.bag) == 3 and not syringe:
         laby.wait(500)
         laby.display_syringe()
         syringe = True
