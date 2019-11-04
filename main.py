@@ -15,7 +15,13 @@ def main():
     laby.open_game()
     
     # Wait for the player to press ENTER to play or ESC to exit
-    laby.start_menu()
+    if(laby.want_to_play()): 
+        print("ca marche")
+    else:
+        laby.close_game()    
+    
+    
+    
     
 if __name__ == "__main__":
     main()    
