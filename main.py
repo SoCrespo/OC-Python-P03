@@ -9,10 +9,10 @@ import params as pm
 
 def main():
     """Launches MacGyver Maze game"""
-    while True :
+    while True:
         laby = maze.Maze(pm.PATTERN)
         play = laby.want_to_play()
-        if play == False :
+        if play is False:
             break
         mac = hero.Hero()
         mac.pos = laby.startpos
