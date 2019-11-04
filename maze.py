@@ -30,8 +30,12 @@ class Maze:
         """Return pygame.type.wait."""
         pygame.time.wait(duration)
 
-    def start_menu(self):
-        """Display a main Menu to start or exit game."""
+    def want_to_play(self):
+        """
+        Ask player if he wants to play or exit.
+        Return True in player press Enter,
+        False if player press ESC.
+        """
         self.screen.fill((0, 0, 0))
         self.screen.blit(menu_img, (0, 50))
         pygame.display.update()
@@ -40,12 +44,11 @@ class Maze:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
-                        waiting = False
-                        pygame.quit()
+                        return False
                     elif event.key in (pygame.K_RETURN, pygame.K_KP_ENTER):
-                        waiting = False
                         self.screen.fill((0, 0, 0))
                         pygame.display.update()
+                        return True
 
     def _import_maze(self):
         """
