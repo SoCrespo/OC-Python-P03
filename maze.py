@@ -30,7 +30,7 @@ class Maze:
         """Return pygame.type.wait."""
         pygame.time.wait(duration)
 
-    def display_start_menu(self):
+    def start_menu(self):
         """Display a main Menu to start or exit game."""
         self.screen.fill((0, 0, 0))
         self.screen.blit(menu_img, (0, 50))

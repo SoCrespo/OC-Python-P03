@@ -17,7 +17,7 @@ mac.pos = laby.startpos
 laby.open_game()
 
 # Wait for the player to press ENTER to play or ESC to exit
-laby.display_start_menu()
+laby.start_menu()
 
 # Select 3 random positions for tools in laby.corridor
 tools_positions = random.sample([pos for pos in laby.corridor.keys()
