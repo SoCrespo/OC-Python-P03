@@ -32,8 +32,8 @@ class Maze:
 
     def want_to_play(self):
         """
-        Ask player if he wants to play or exit.
-        Return True in player press Enter,
+        Display a message to ask player for playing or exit.
+        Return True if player press Enter,
         False if player press ESC.
         """
         self.screen.fill((0, 0, 0))
