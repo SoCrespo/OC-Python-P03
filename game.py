@@ -1,6 +1,11 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
+"""Manages the logic of the game.
+Calculate random position of tools,
+manages player moves and their consequences.
+"""
+
 import random
 import tool
 import pygame as py
@@ -69,4 +74,3 @@ def play(maze, player):
             else:
                 maze.display_end(params.perdu_img)
             maze.wait(2000)
-
