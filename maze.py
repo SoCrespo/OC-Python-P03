@@ -42,7 +42,7 @@ class Maze:
                     if event.key == pygame.K_ESCAPE:
                         waiting = False
                         pygame.quit()
-                    elif event.key == pygame.K_RETURN:
+                    elif event.key in (pygame.K_RETURN, pygame.K_KP_ENTER):
                         waiting = False
                         self.screen.fill((0, 0, 0))
                         pygame.display.update()
