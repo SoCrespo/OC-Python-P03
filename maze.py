@@ -30,6 +30,23 @@ class Maze:
         """Return pygame.type.wait."""
         pygame.time.wait(duration)
 
+    def display_start_menu(self):
+        """Display a main Menu to start or exit game."""
+        self.screen.fill((0, 0, 0))
+        self.screen.blit(menu_img, (0, 50))
+        pygame.display.update()
+        waiting = True
+        while waiting:
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        waiting = False
+                        pygame.quit()
+                    elif event.key == pygame.K_RETURN:
+                        waiting = False
+                        self.screen.fill((0, 0, 0))
+                        pygame.display.update()
+
     def _import_maze(self):
         """
         Convert txt pattern into dictionary.
