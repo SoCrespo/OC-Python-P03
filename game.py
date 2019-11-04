@@ -16,10 +16,10 @@ mac = hero.Hero()
 mac.pos = laby.startpos
 laby.open_game()
 
+# Display the start menu and wait for Enter / ESC
 laby.screen.fill((0, 0, 0))
 laby.screen.blit(menu_img, (0, 50))
 pygame.display.update()
-
 waiting = True
 while waiting:
     for event in pygame.event.get():
