@@ -15,11 +15,18 @@ def main():
     laby.open_game()
 
     # Wait for the player to press ENTER to play or ESC to exit
-    if(laby.want_to_play()):
+    while laby.want_to_play():
         print("ca marche")
     else:
         laby.close_game()
 
-
+    # End of game
+    if mac.pos == laby.exit:
+        if syringe:
+            laby.display_end(gagne_img)
+        else:
+            laby.display_end(perdu_img)
+        laby.wait(2000)
+    
 if __name__ == "__main__":
     main()
