@@ -16,6 +16,21 @@ mac = hero.Hero()
 mac.pos = laby.startpos
 laby.open_game()
 
+laby.screen.fill((0, 0, 0))
+laby.screen.blit(menu_img, (0, 50))
+pygame.display.update()
+
+waiting = True
+while waiting:
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                waiting = False
+                pygame.quit()
+            elif event.key == pygame.K_RETURN:
+                waiting = False
+                laby.screen.fill((0, 0, 0))
+                pygame.display.update()
 
 # Select 3 random positions for tools in laby.corridor
 tools_positions = random.sample([pos for pos in laby.corridor.keys()
@@ -27,8 +42,9 @@ tools = ether, needle, tube = [tool.Tool(letter, pos) for letter, pos in
 for tool in tools:
     laby.background[tool.pos] = tool.letter
 
-# Display game deck at its inital position
+# Display game deck at its inital position    
 laby.display_layout()
+
 
 # Manage MacGyver movements
 new_coord = mac.pos
