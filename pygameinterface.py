@@ -15,7 +15,7 @@ class Pygameinterface:
     def open_game(self):
         pygame.init()
 
-    def quit(self):
+    def quit_game(self):
         pygame.quit()
 
     def event_get(self):

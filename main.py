@@ -10,8 +10,8 @@ import params as pm
 
 def main():
     """Launches MacGyver Maze game"""
+    pgi = pygameinterface.Pygameinterface()
     while True:
-        pgi = pygameinterface.Pygameinterface()
         laby = maze.Maze(pm.PATTERN)
         play = laby.want_to_play()
         if play is False:
@@ -20,7 +20,7 @@ def main():
         mac.pos = laby.startpos
         pgi.open_game()
         game.play(laby, mac)
-    py.quit()
+    pgi.quit_game()
 
 
 if __name__ == "__main__":
