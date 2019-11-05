@@ -27,6 +27,7 @@ def main():
 
         new_coord = mac.pos
         syringe = False
+
         while mac.pos != laby.exit:
             key = pgi.press_key()
             if key == "escape":
@@ -41,13 +42,15 @@ def main():
                 new_coord = mac.right()
 
             game.move_player(new_coord)
-            game.update_player_bag()
             pgi.display_layout(laby)
-            pgi.display_bag(mac.bag, laby)
-            if len(mac.bag) == 3 and not syringe:
-                pgi.wait(500)
-                pgi.display_syringe(laby)
-                syringe = True
+            game.update_player_bag()
+
+            if not syringe:
+                pgi.display_bag(mac.bag, laby)
+                if len(mac.bag) == 3:
+                    pgi.wait(500)
+                    pgi.display_syringe(laby)
+                    syringe = True
 
         if syringe:
             img = pm.gagne_img
