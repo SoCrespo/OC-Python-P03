@@ -8,7 +8,7 @@ class Maze:
     """Manage the game board structure."""
 
     def __init__(self, pattern):
-        """Create the maze based on pattern.txt."""
+        """Create the maze based on txt pattern."""
         self.pattern = pattern
         self.background, self.height, self.width = self._import_maze()
         self.start_pos, self.exit, self.corridor = self._get_positions()
