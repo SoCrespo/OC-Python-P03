@@ -1,3 +1,11 @@
+#! /usr/bin/env python3
+# coding: utf-8
+
+"""
+Parameters for Mac Gyver Game.
+"""
+
+
 import pygame
 
 PATTERN = "pattern.txt"
@@ -28,3 +36,6 @@ img_switch = {
     "t": tube_img
     }
 caption = "Labyrinthe Mac Gyver"
+
+if __name__ == "__main__":
+    pass
