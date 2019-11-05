@@ -19,7 +19,7 @@ class Maze:
 
         Return a tuple with:
         - this dictionary,
-        - heigth (number of lines)
+        - height (number of lines)
         - width (number of characters)
         of the pattern.
         """
