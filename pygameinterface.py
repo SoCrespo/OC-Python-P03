@@ -87,7 +87,8 @@ class Pygameinterface:
         pygame.display.update()
 
     def press_key(self):
-        """Get the pressed key and return a string
+        """
+        Get the pressed key and return a string
         'escape', 'up', 'down', 'left' or 'right'.
         """
         for event in pygame.event.get():
