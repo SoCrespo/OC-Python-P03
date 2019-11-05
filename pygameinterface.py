@@ -75,10 +75,10 @@ class Pygameinterface:
         """Erase picked up tools and display the syringe."""
         x = maze.width * params.IMG_WIDTH
         y = 6 * params.IMG_HEIGHT
-        self.screen.fill((0, 0, 0), (x, 0, maze.width * params.IMG_WIDTH, y))
-        pygame.display.flip()
+        self.screen.fill((0, 0, 0), (x, 0, x, y))
+        pygame.display.update()
         self.screen.blit(params.syringe_img, (x, y))
-        pygame.display.flip()
+        pygame.display.update()
 
     def display_end(self, maze, img):
         """Display the result of the game."""
