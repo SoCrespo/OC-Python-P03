@@ -41,3 +41,7 @@ class Play:
             if self.player.pos == item.pos:
                 self.player.bag.append(item)
                 self.tools.remove(item)
+
+
+if __name__ == "__main__":
+    pass
