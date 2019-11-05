@@ -18,14 +18,6 @@ class Maze:
         pygame.display.set_caption(caption)
         pygame.display.set_icon(mac_img)
 
-    # def open_game(self):
-    #     """Return pygame.init."""
-    #     pygame.init
-
-    def close_game(self):
-        """Return pygame.quit."""
-        pygame.quit
-
     def wait(self, duration):
         """Return pygame.type.wait."""
         pygame.time.wait(duration)
