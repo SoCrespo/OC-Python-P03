@@ -26,7 +26,7 @@ def main():
         mac = hero.Hero()
         mac.pos = laby.start_pos
         game = play.Play(laby, mac)
-        maze.tools = game.add_tools_in_maze()
+        game.add_tools_in_maze()
 
         pgi.open_game()
         pgi.display_layout(laby)
