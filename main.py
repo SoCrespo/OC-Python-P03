@@ -24,6 +24,7 @@ def main():
         game = play.Play(laby, mac)
         maze.tools = game.add_tools_in_maze()
         pgi.open_game()
+        pgi.display_layout(laby)
 
         new_coord = mac.pos
         syringe = False
@@ -41,9 +42,11 @@ def main():
             elif key == "right":
                 new_coord = mac.right()
 
-            laby.move_player(mac, new_coord)
-            pgi.display_layout(laby)
-            game.update_player_bag()
+            if new_coord in laby.corridor:
+                laby.move_player(mac, new_coord)
+                mac.update_pos(new_coord)
+                pgi.display_layout(laby)
+                game.update_player_bag()
 
             if not syringe:
                 pgi.display_bag(mac.bag, laby)

@@ -19,6 +19,9 @@ class Hero:
         x, y = self.pos
         return (x, y + 1)
 
+    def update_pos(self, pos):
+        self.pos = pos
+
 
 if __name__ == "__main__":
     pass
