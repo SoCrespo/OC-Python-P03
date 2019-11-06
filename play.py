@@ -2,8 +2,7 @@
 # coding: utf-8
 
 """
-Manages the tools position in the maze.
-Defines randomly tools positions and add them in the maze.
+Manage the tools position in the maze.
 """
 
 import tool
@@ -11,6 +10,10 @@ import random
 
 
 class Play:
+    """
+    Manage the tools position in the maze and player's bag.
+    """
+
     def __init__(self, maze, player):
         self.maze = maze
         self.player = player
