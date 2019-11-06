@@ -4,8 +4,6 @@
 """
 Manages the tools position in the maze.
 Defines randomly tools positions and add them in the maze.
-
-
 """
 
 import tool
