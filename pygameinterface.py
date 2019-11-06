@@ -56,7 +56,7 @@ class Pygameinterface:
                         return True
 
     def display_layout(self, maze):
-        """Display game board based on maze.background."""
+        """Display game board based on Maze.background."""
         for i in range(maze.width):
             for j in range(maze.height):
                 img = params.img_switch.get(maze.background.get((i, j)))
@@ -65,7 +65,7 @@ class Pygameinterface:
             pygame.display.flip()
 
     def display_bag(self, bag, maze):
-        """Display mac's bag content on maze side."""
+        """Display player's bag content on maze side."""
         x = maze.width * params.IMG_WIDTH
         for tool in bag:
             y = params.IMG_HEIGHT * 2 * bag.index(tool)
