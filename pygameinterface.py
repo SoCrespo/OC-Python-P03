@@ -2,8 +2,7 @@
 # coding: utf-8
 
 """
-Interfacing with pygame.
-Manages all displays.
+Interfacing with pygame. Manages all displays.
 """
 
 import pygame
@@ -11,7 +10,9 @@ import params
 
 
 class Pygameinterface:
-    """ Functions imported from pygame."""
+    """
+    Interfacing with pygame. Manages all displays.
+    """
 
     def __init__(self):
         self.screen = pygame.display.set_mode(params.SCREEN_SIZE)
@@ -55,7 +56,7 @@ class Pygameinterface:
                         return True
 
     def display_layout(self, maze):
-        """Display game board."""
+        """Display game board based on maze.background."""
         for i in range(maze.width):
             for j in range(maze.height):
                 img = params.img_switch.get(maze.background.get((i, j)))
