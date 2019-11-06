@@ -3,6 +3,8 @@
 
 """
 Manages the logic of the game and players's moves.
+Defines randomly tools positions and add them in the maze.
+
 """
 
 import tool
@@ -27,13 +29,6 @@ class Play:
         """Add letters corresponding to tools in maze dictionary"""
         for item in self.tools:
             self.maze.background[item.pos] = item.letter
-
-    def move_player(self, coord):
-        """Move player to new position if is in corridor."""
-        if coord in self.maze.corridor:
-            self.maze.background[self.player.pos] = "_"
-            self.maze.background[coord] = "*"
-            self.player.pos = coord
 
     def update_player_bag(self):
         """Update player's bag content."""

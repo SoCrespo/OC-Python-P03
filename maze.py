@@ -60,6 +60,11 @@ class Maze:
         else:
             return start_pos[0], exit[0], corridor
 
-
+    def move_player(self, player, coord):
+        """Move player to new position if is in corridor."""
+        if coord in self.corridor:
+            self.background[player.pos] = "_"
+            self.background[coord] = "*"
+            player.pos = coord    
 if __name__ == "__main__":
     pass

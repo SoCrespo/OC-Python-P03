@@ -41,7 +41,7 @@ def main():
             elif key == "right":
                 new_coord = mac.right()
 
-            game.move_player(new_coord)
+            laby.move_player(mac, new_coord)
             pgi.display_layout(laby)
             game.update_player_bag()
 
