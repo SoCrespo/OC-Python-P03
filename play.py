@@ -2,8 +2,9 @@
 # coding: utf-8
 
 """
-Manages the logic of the game and players's moves.
+Manages the tools position in the maze.
 Defines randomly tools positions and add them in the maze.
+
 
 """
 

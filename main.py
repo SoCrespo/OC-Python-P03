@@ -14,15 +14,22 @@ import params as pm
 
 def main():
     """Launches MacGyver Maze game"""
+    # Instanciate an object managing all Pygame instructions
     pgi = pygameinterface.Pygameinterface()
+
+
     while True:
         if pgi.want_to_play() is False:
             break
-        laby = maze.Maze(pm.PATTERN)
+
+        # instanciate necessary objects
+        laby = maze.Maze(pm.PATTERN) # Create laby from txt pattern
         mac = hero.Hero()
         mac.pos = laby.start_pos
-        game = play.Play(laby, mac)
+        game = play.Play(laby, mac) 
         maze.tools = game.add_tools_in_maze()
+        
+        
         pgi.open_game()
         pgi.display_layout(laby)
 
