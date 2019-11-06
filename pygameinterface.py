@@ -92,18 +92,16 @@ class Pygameinterface:
         Get the pressed key and return a string
         'escape', 'up', 'down', 'left' or 'right'.
         """
+        keys_switch = {
+            pygame.K_ESCAPE: "escape",
+            pygame.K_DOWN: "down",
+            pygame.K_UP: "up",
+            pygame.K_LEFT: "left",
+            pygame.K_RIGHT: "right"
+        }
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    return "escape"
-                elif event.key == pygame.K_DOWN:
-                    return "down"
-                elif event.key == pygame.K_UP:
-                    return "up"
-                elif event.key == pygame.K_LEFT:
-                    return "left"
-                elif event.key == pygame.K_RIGHT:
-                    return "right"
+                return keys_switch.get(event.key)
 
 
 if __name__ == "__main__":
