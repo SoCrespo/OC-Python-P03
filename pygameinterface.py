@@ -87,17 +87,17 @@ class Pygameinterface:
                                maze.width / 5 * params.IMG_WIDTH))
         pygame.display.update()
 
-    def press_key(self):
+    def press_key(self, player):
         """
         Get the pressed key and return a string
         'escape', 'up', 'down', 'left' or 'right'.
         """
         keys_switch = {
-            pygame.K_ESCAPE: "escape",
-            pygame.K_DOWN: "down",
-            pygame.K_UP: "up",
-            pygame.K_LEFT: "left",
-            pygame.K_RIGHT: "right"
+            pygame.K_ESCAPE: self.quit_game,
+            pygame.K_DOWN: player.down,
+            pygame.K_UP: player.up,
+            pygame.K_LEFT: player.left,
+            pygame.K_RIGHT: player.right
         }
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
