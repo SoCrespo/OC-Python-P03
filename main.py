@@ -34,12 +34,19 @@ def main():
         new_coord = mac.pos
         syringe = False
 
+        action_switch = {
+            "escape": pgi.quit_game,
+            "up": mac.up,
+            "down": mac.down,
+            "left": mac.left,
+            "right": mac.right,
+        }
         while mac.pos != laby.exit:
-            key = pgi.press_key(mac)
+            key = pgi.press_key()
             if key is None:
                 continue
             else:
-                new_coord = key()
+                new_coord = action_switch.get(key)()
 
             if new_coord in laby.corridor:
                 laby.move_player(mac, new_coord)
