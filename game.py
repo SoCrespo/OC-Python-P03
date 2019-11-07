@@ -21,7 +21,7 @@ class Game:
         self.mac = hero.Hero()  # Create player
         self.mac.pos = self.laby.start_pos  # Set player starting position
         #                                     according to pattern
-        self.game = toolmanager.ToolManager(self.laby, self.mac)  # Create object managing
+        self.tman = toolmanager.ToolManager(self.laby, self.mac)  # Create object managing
         #                                             tools positions
         self.syringe = False  # Player has no syringe at beginning
 
@@ -40,7 +40,7 @@ class Game:
         '''
         Add letter corresponding to each tool in maze.background.
         '''
-        self.game.add_tools_in_maze()
+        self.tman.add_tools_in_maze()
 
     def display_graphic_layer(self):
         '''
@@ -72,7 +72,7 @@ class Game:
             self.laby.move_player(self.mac, coord)
             self.mac.update_pos(coord)
             self.pgi.display_layout(self.laby)
-            self.game.update_player_bag()
+            self.tman.update_player_bag()
 
     def make_syringe(self):
         '''Make syringe when 3 tools are in player's bag.'''
