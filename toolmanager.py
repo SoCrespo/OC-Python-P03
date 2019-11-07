@@ -9,7 +9,7 @@ import tool
 import random
 
 
-class Play:
+class ToolManager:
     """
     Manage the tools position in the maze and player's bag.
     """

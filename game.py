@@ -7,7 +7,7 @@ Main function for Mac Gyver Game.
 
 import maze
 import hero
-import play
+import toolmanager
 import pygameinterface
 import params as pm
 
@@ -21,7 +21,7 @@ class Game:
         self.mac = hero.Hero()  # Create player
         self.mac.pos = self.laby.start_pos  # Set player starting position
         #                                     according to pattern
-        self.game = play.Play(self.laby, self.mac)  # Create object managing
+        self.game = toolmanager.ToolManager(self.laby, self.mac)  # Create object managing
         #                                             tools positions
         self.syringe = False  # Player has no syringe at beginning
 
