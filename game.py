@@ -54,7 +54,7 @@ class Game:
         self.pgi.display_layout(self.laby)
 
     def calc_move(self):
-        ''' Calculates player new coordinates according to pressed key'''
+        ''' Calculates player new coordinates according to pressed key.'''
         action_switch = {
             "escape": self.pgi.quit_game,
             "up": self.mac.up,
@@ -70,15 +70,14 @@ class Game:
                 return action_switch.get(key)()
 
     def confirm_move(self, coord):
-        '''Move player logically and graphically,
-        and pick up tool if there is.'''
+        '''Move player logically and graphically.'''
         if coord in self.laby.corridor:
             self.laby.move_player(self.mac, coord)
             self.mac.update_pos(coord)
             self.pgi.display_layout(self.laby)
 
     def pick_tool(self):
-        '''If there's a tool, put it in player's bag and out of maze'''
+        '''If there's a tool, put it in player's bag and out of maze.'''
         self.tman.update_player_bag()
 
     def make_syringe(self):
