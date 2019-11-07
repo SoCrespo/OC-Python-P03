@@ -12,7 +12,7 @@ import pygameinterface
 import params as pm
 
 
-class Main:
+class Game:
     """Manages MacGyver Maze game"""
 
     def __init__(self):
@@ -102,7 +102,7 @@ class Main:
 
 def main():
     while True:
-        g = Main()
+        g = Game()
         g.show_start_menu()
         if not g.want_to_play():
             break
