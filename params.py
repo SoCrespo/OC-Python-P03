@@ -36,6 +36,3 @@ img_switch = {
     "t": tube_img
     }
 caption = "Labyrinthe Mac Gyver"
-
-if __name__ == "__main__":
-    pass
