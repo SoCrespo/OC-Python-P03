@@ -62,10 +62,10 @@ def main():
                     syringe = True
 
         if syringe:
-            img = pm.gagne_img
+            win = True
         else:
-            img = pm.perdu_img
-        pgi.display_end(laby, img)
+            win = False
+        pgi.display_end(laby, win)
         pgi.wait(2000)
     pgi.quit_game()
 
