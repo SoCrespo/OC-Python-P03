@@ -16,14 +16,18 @@ class Game:
     """Manages MacGyver Maze game"""
 
     def __init__(self):
-        self.pgi = pygameinterface.Pygameinterface()  # Create Pygame interface
-        self.laby = maze.Maze(pm.PATTERN)  # Create laby from txt pattern
-        self.mac = hero.Hero()  # Create player
-        self.mac.pos = self.laby.start_pos  # Set player starting position
-        #                                     according to pattern
-        self.tman = toolmanager.ToolManager(self.laby, self.mac)  # Create object managing
-        #                                             tools positions
-        self.syringe = False  # Player has no syringe at beginning
+        # Create Pygame interface
+        self.pgi = pygameinterface.Pygameinterface()
+        # Create laby from txt pattern
+        self.laby = maze.Maze(pm.PATTERN)
+        # Create player
+        self.mac = hero.Hero()
+        # Set player starting position from pattern
+        self.mac.pos = self.laby.start_pos
+        # Create object managing tools (random position, picking)
+        self.tman = toolmanager.ToolManager(self.laby, self.mac)
+        # Player has no syringe at beginning
+        self.syringe = False
 
     def show_start_menu(self):
         '''Display a message to ask player for playing or exit.'''
