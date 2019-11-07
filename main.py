@@ -12,62 +12,108 @@ import pygameinterface
 import params as pm
 
 
-def main():
-    """Launches MacGyver Maze game"""
-    # Instanciate an object managing all Pygame instructions
-    pgi = pygameinterface.Pygameinterface()
+class Main:
+    """Manages MacGyver Maze game"""
 
-    while True:
-        if pgi.want_to_play() is False:
-            break
+    def __init__(self):
+        self.pgi = pygameinterface.Pygameinterface()  # Create Pygame interface
+        self.laby = maze.Maze(pm.PATTERN)  # Create laby from txt pattern
+        self.mac = hero.Hero()  # Create player
+        self.mac.pos = self.laby.start_pos  # Set player starting position
+        #                                     according to pattern
+        self.game = play.Play(self.laby, self.mac)  # Create object managing
+        #                                             tools positions
+        self.syringe = False  # Player has no syringe at beginning
 
-        # instanciate necessary objects
-        laby = maze.Maze(pm.PATTERN)  # Create laby from txt pattern
-        mac = hero.Hero()
-        mac.pos = laby.start_pos
-        game = play.Play(laby, mac)
-        game.add_tools_in_maze()
+    def show_start_menu(self):
+        '''Display a message to ask player for playing or exit.'''
+        self.pgi.show_start_menu()
 
-        pgi.open_game()
-        pgi.display_layout(laby)
+    def want_to_play(self):
+        '''
+        Return True if Enter is pressed,
+        False if presses ESC.
+        '''
+        return self.pgi.want_to_play()
 
-        new_coord = mac.pos
-        syringe = False
+    def add_tools_in_maze(self):
+        '''
+        Add letter corresponding to each tool in maze.background.
+        '''
+        self.game.add_tools_in_maze()
 
+    def display_graphic_layer(self):
+        '''
+        Start pygame interface and display the game deck.
+        '''
+        self.pgi.open_game()
+        self.pgi.display_layout(self.laby)
+
+    def calc_move(self):
+        ''' Calculates player new coordinates according to pressed key'''
         action_switch = {
-            "escape": pgi.quit_game,
-            "up": mac.up,
-            "down": mac.down,
-            "left": mac.left,
-            "right": mac.right,
+            "escape": self.pgi.quit_game,
+            "up": self.mac.up,
+            "down": self.mac.down,
+            "left": self.mac.left,
+            "right": self.mac.right,
         }
-        while mac.pos != laby.exit:
-            key = pgi.press_key()
+        while self.mac.pos != self.laby.exit:
+            key = self.pgi.press_key()
             if key is None:
                 continue
             else:
-                new_coord = action_switch.get(key)()
+                return action_switch.get(key)()
 
-            if new_coord in laby.corridor:
-                laby.move_player(mac, new_coord)
-                mac.update_pos(new_coord)
-                pgi.display_layout(laby)
-                game.update_player_bag()
+    def confirm_move(self, coord):
+        '''Move player logically and graphically,
+        and pick up tool if there is.'''
+        if coord in self.laby.corridor:
+            self.laby.move_player(self.mac, coord)
+            self.mac.update_pos(coord)
+            self.pgi.display_layout(self.laby)
+            self.game.update_player_bag()
 
-            if not syringe:
-                pgi.display_bag(mac.bag, laby)
-                if len(mac.bag) == 3:
-                    pgi.wait(500)
-                    pgi.display_syringe(laby)
-                    syringe = True
+    def make_syringe(self):
+        '''Make syringe when 3 tools are in player's bag.'''
+        if not self.syringe:
+            self.pgi.display_bag(self.mac.bag, self.laby)
+            if len(self.mac.bag) == 3:
+                self.pgi.wait(500)
+                self.pgi.display_syringe(self.laby)
+                self.syringe = True
 
-        if syringe:
+    def exit_reached(self):
+        return self.mac.pos == self.laby.exit
+
+    def escape(self):
+        '''Test if player has syringe and display win or lose.'''
+        if self.syringe:
             win = True
         else:
             win = False
-        pgi.display_end(laby, win)
-        pgi.wait(2000)
-    pgi.quit_game()
+        self.pgi.display_end(self.laby, win)
+        self.pgi.wait(2000)
+
+    def end_game(self):
+        '''Exit game.'''
+        self.pgi.quit_game()
+
+
+def main():
+    while True:
+        g = Main()
+        g.show_start_menu()
+        if not g.want_to_play():
+            break
+        while not g.exit_reached():
+            g.add_tools_in_maze()
+            g.display_graphic_layer()
+            new_pos = g.calc_move()
+            g.confirm_move(new_pos)
+            g.make_syringe()
+        g.escape()
+    g.end_game()
 
 
 if __name__ == "__main__":
