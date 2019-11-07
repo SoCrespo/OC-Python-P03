@@ -10,7 +10,7 @@ The 3 objects will automatically transform into a syringe once you have picked u
 Once you have the syringe, all you have to do is rush to the exit.
 
 **SETUP**  
-This program uses Python 3.7 and an the Pygame module. To run it, first install last version of Python following these instructions : <https://realpython.com/installing-python/>.  
+This program uses Python 3.7 and the Pygame module. To run it, you then need to install last version of Python following these instructions : <https://realpython.com/installing-python/>.  
 Then install Pygame typing the following instruction in a terminal (you can also use a virtual environment):  
 python -m pip install pygame
 
@@ -20,4 +20,4 @@ The program can be launched in two ways :
 - in command line, go into the root directory of the app and type the following instruction: py game.py
 
 **CONFIGURATION**  
-All parameters are in params.py file, please read the comments to learn which one can be modified and how.
+All parameters are in params.py file, please read the comments to learn which ones can be modified and how.
