@@ -76,7 +76,10 @@ class Game:
             self.laby.move_player(self.mac, coord)
             self.mac.update_pos(coord)
             self.pgi.display_layout(self.laby)
-            self.tman.update_player_bag()
+
+    def pick_tool(self):
+        '''If there's a tool, put it in player's bag and out of maze'''
+        self.tman.update_player_bag()
 
     def make_syringe(self):
         '''Make syringe when 3 tools are in player's bag.'''
@@ -115,6 +118,7 @@ def main():
             g.display_graphic_layer()
             new_pos = g.calc_move()
             g.confirm_move(new_pos)
+            g.pick_tool()
             g.make_syringe()
         g.escape()
     g.end_game()
