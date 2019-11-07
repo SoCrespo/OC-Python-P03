@@ -59,15 +59,16 @@ class Pygameinterface:
         """Return pygame.event_get."""
         pygame.event_get()
 
-    def want_to_play(self):
+    def show_start_menu(self):
         """
         Display a message to ask player for playing or exit.
-        Return True if player press Enter,
-        False if player press ESC.
         """
         self.screen.fill((0, 0, 0))
         self.screen.blit(self.menu_img, (0, 50))
         pygame.display.update()
+
+    def want_to_play(self):
+        '''Return True if player presses Enter, False if presses ESC.'''
         waiting = True
         while waiting:
             for event in pygame.event.get():
