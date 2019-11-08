@@ -2,7 +2,7 @@
 # coding: utf-8
 
 """
-Manage the tools position in the maze.
+Manage the tools position in the maze and player's bag.
 """
 
 import tool
@@ -28,7 +28,7 @@ class ToolManager:
                 for letter, pos in zip(("e", "n", "t"), tools_positions)]
 
     def add_tools_in_maze(self):
-        """Add letters corresponding to tools in maze dictionary"""
+        """Add letters corresponding to tools in maze dictionary."""
         for item in self.tools:
             self.maze.background[item.pos] = item.letter
 
