@@ -107,11 +107,11 @@ class Pygameinterface:
         pygame.display.update()
 
     def display_end(self, maze, win):
+        """Display the result of the game."""
         if win is True:
             img = self.gagne_img
         else:
             img = self.perdu_img
-        """Display the result of the game."""
         self.screen.blit(img, (maze.height / 5 * pm.IMG_HEIGHT,
                                maze.width / 5 * pm.IMG_WIDTH))
         pygame.display.update()
