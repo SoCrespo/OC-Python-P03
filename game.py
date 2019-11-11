@@ -64,10 +64,7 @@ class Game:
         }
         while self.mac.pos != self.laby.exit:
             key = self.pgi.press_key()
-            if key is None:
-                continue
-            else:
-                return action_switch.get(key)()
+            return action_switch.get(key)()
 
     def confirm_move(self, coord):
         '''Move player logically and graphically.'''
