@@ -28,8 +28,6 @@ class Game:
         self.tman = toolmanager.ToolManager(self.laby, self.mac)
         # Player has no syringe at beginning
         self.syringe = False
-        # Game start
-        self.main()
 
     def show_start_menu(self):
         '''Display a message to ask player for playing or exit.'''
@@ -104,21 +102,23 @@ class Game:
         '''Exit game.'''
         self.pgi.quit_game()
 
-    def main(self):
-        while True:
-            self.show_start_menu()
-            if not self.want_to_play():
-                break
-            while not self.exit_reached():
-                self.add_tools_in_maze()
-                self.display_graphic_layer()
-                new_pos = self.calc_move()
-                self.confirm_move(new_pos)
-                self.pick_tool()
-                self.make_syringe()
-            self.escape()
-        self.end_game()
+
+def main():
+    while True:
+        g = Game()
+        g.show_start_menu()
+        if not g.want_to_play():
+            break
+        while not g.exit_reached():
+            g.add_tools_in_maze()
+            g.display_graphic_layer()
+            new_pos = g.calc_move()
+            g.confirm_move(new_pos)
+            g.pick_tool()
+            g.make_syringe()
+        g.escape()
+    g.end_game()
 
 
 if __name__ == "__main__":
-    g = Game()
+    main()
