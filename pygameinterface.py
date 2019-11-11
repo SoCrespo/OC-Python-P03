@@ -128,9 +128,10 @@ class Pygameinterface:
             pygame.K_LEFT: "left",
             pygame.K_RIGHT: "right"
         }
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                return keys_switch.get(event.key)
+        event = pygame.event.wait()
+        while event.type != pygame.KEYDOWN:
+            event = pygame.event.wait()
+        return keys_switch.get(event.key)
 
 
 if __name__ == "__main__":
