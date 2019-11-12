@@ -22,10 +22,17 @@ class Game:
         self.laby = maze.Maze(pm.PATTERN)
         # Create player
         self.mac = hero.Hero()
-        # Set player starting position from pattern
-        self.mac.pos = self.laby.start_pos
+
+    def initialize_game(self):
+        '''
+        Initialize tools positions, player's bag and syringe state
+        to start new game.'''
         # Create object managing tools (random position, picking)
         self.tman = toolmanager.ToolManager(self.laby, self.mac)
+        # Set player starting position from pattern
+        self.mac.pos = self.laby.start_pos
+        # Empty player's bag
+        self.mac.bag = []
         # Player has no syringe at beginning
         self.syringe = False
 
@@ -104,10 +111,10 @@ class Game:
 
     def main(self):
         while True:
-            self.__init__()
             self.show_start_menu()
             if not self.want_to_play():
                 break
+            self.initialize_game()
             while not self.exit_reached():
                 self.add_tools_in_maze()
                 self.display_graphic_layer()
