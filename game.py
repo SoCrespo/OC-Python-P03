@@ -78,7 +78,7 @@ class Game:
         self.tman.update_player_bag()
 
     def make_syringe(self):
-        '''Make syringe when 3 tools are in player's bag.'''
+        '''Make syringe when 3 tools are in player's baself.'''
         if not self.syringe:
             self.pgi.display_bag(self.mac.bag, self.laby)
             if len(self.mac.bag) == 3:
@@ -102,23 +102,23 @@ class Game:
         '''Exit game.'''
         self.pgi.quit_game()
 
-
-def main():
-    while True:
-        g = Game()
-        g.show_start_menu()
-        if not g.want_to_play():
-            break
-        while not g.exit_reached():
-            g.add_tools_in_maze()
-            g.display_graphic_layer()
-            new_pos = g.calc_move()
-            g.confirm_move(new_pos)
-            g.pick_tool()
-            g.make_syringe()
-        g.escape()
-    g.end_game()
+    def main(self):
+        while True:
+            self.__init__()
+            self.show_start_menu()
+            if not self.want_to_play():
+                break
+            while not self.exit_reached():
+                self.add_tools_in_maze()
+                self.display_graphic_layer()
+                new_pos = self.calc_move()
+                self.confirm_move(new_pos)
+                self.pick_tool()
+                self.make_syringe()
+            self.escape()
+        self.end_game()
 
 
 if __name__ == "__main__":
-    main()
+    g = Game()
+    g.main()
