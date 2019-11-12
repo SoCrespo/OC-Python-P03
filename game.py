@@ -24,7 +24,8 @@ class Game:
     def initialize_game(self):
         '''
         Initialize tools positions, player's bag and syringe state
-        to start new game.'''
+        to start new game.
+        '''
         # Create laby from txt pattern
         self.laby = maze.Maze(pm.PATTERN)
         # Create object managing tools (random position, picking)
