@@ -86,7 +86,7 @@ class Game:
         self.tman.update_player_bag()
 
     def make_syringe(self):
-        '''Make syringe when 3 tools are in player's baself.'''
+        '''Make syringe when 3 tools are in player's bag.'''
         if not self.syringe:
             self.pgi.display_bag(self.mac.bag, self.laby)
             if len(self.mac.bag) == 3:
