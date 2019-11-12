@@ -110,6 +110,7 @@ class Game:
         self.pgi.quit_game()
 
     def main(self):
+        '''Main loop of the game.'''
         while True:
             self.show_start_menu()
             if not self.want_to_play():
