@@ -18,8 +18,6 @@ class Game:
     def __init__(self):
         # Create Pygame interface
         self.pgi = pygameinterface.Pygameinterface()
-        # Create laby from txt pattern
-        self.laby = maze.Maze(pm.PATTERN)
         # Create player
         self.mac = hero.Hero()
 
@@ -27,6 +25,8 @@ class Game:
         '''
         Initialize tools positions, player's bag and syringe state
         to start new game.'''
+        # Create laby from txt pattern
+        self.laby = maze.Maze(pm.PATTERN)
         # Create object managing tools (random position, picking)
         self.tman = toolmanager.ToolManager(self.laby, self.mac)
         # Set player starting position from pattern
