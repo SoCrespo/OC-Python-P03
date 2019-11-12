@@ -95,6 +95,7 @@ class Game:
                 self.syringe = True
 
     def exit_reached(self):
+        '''Boolean : player is or not on the exit'''
         return self.mac.pos == self.laby.exit
 
     def escape(self):
