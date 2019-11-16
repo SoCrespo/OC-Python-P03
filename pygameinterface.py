@@ -129,7 +129,8 @@ class Pygameinterface:
             pygame.K_RIGHT: "right"
         }
         event = pygame.event.wait()
-        while event.type != pygame.KEYDOWN:
+        while not (event.type != pygame.KEYDOWN and
+                   event.key in keys_switch.keys()):
             event = pygame.event.wait()
         return keys_switch.get(event.key)
 
