@@ -21,7 +21,7 @@ This program uses Python 3.7 and the Pygame module as a dependancy. To run it, y
 The program can be launched in two ways:
 
 - in file explorer, right-click on the `game.py` file and choose "Open with.../ Python"
-- in command line, go into the root directory of the app and type the following instruction: `py game.py`
+- in command line, go into the root directory of the app and type the following instruction: `python game.py`
 
 **CONFIGURATION**  
 All parameters are in `params.py` file, with comments to let you know which ones can be modified and how.
