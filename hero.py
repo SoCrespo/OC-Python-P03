@@ -8,7 +8,6 @@ Manage hero position.
 
 class Hero:
     def __init__(self):
-        self.pos = (1, 1)
         self.bag = []
 
     def up(self):
