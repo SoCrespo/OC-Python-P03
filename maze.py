@@ -49,10 +49,10 @@ class Maze:
         exit = []
         corridor = {}
         for coord, char in self.background.items():
-            if char == "*":
-                start_pos.append(coord)
-            elif char in (":", "_"):
+            if char in (":", "_", "*"):
                 corridor.update({coord: char})
+                if char == "*":
+                    start_pos.append(coord)
                 if char == ":":
                     exit.append(coord)
         if not (len(start_pos) == len(exit) == 1):
