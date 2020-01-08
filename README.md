@@ -12,7 +12,7 @@ The 3 objects will automatically transform into a syringe once you have picked u
 Once you have the syringe, all you have to do is rush to the exit.
 
 **SETUP**  
-This program uses Python 3.7 and the Pygame module as a dependancy. To run it, you then need to:  
+This program uses Python 3.7 and the Pygame module as a dependancy. To run it, you need to:  
 
 - install last version of Python following these instructions: <https://realpython.com/installing-python/>.  
 - then install the required dependency by typing in terminal: `pip install -r requirements.txt`  
